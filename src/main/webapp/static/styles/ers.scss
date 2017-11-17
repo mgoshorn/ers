@@ -1,0 +1,222 @@
+$fonts-sansserif: Helvetica, arial, sans-serif;
+$table-offColor: #EEE;
+
+@mixin center {
+   /* position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);*/
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+}
+
+#userbar {
+    position: relative;
+    width: 100%;
+    max-height: 10%;
+    padding: 10px;
+    border-bottom: 1px solid gray;
+    font-family: Arial, Helvetica, sans-serif;
+    vertical-align: middle;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: spece-between;
+
+    button {
+
+        flex-grow: 0;
+        max-height: 30px;
+        vertical-align: middle;
+        margin: 0 4%;
+    }
+
+    h1 {
+        text-align: center;
+        flex-grow: 5;
+        font-size: 20px;
+        vertical-align: middle;
+        margin: 0;
+        padding: 0;
+    }
+
+    #userbar-username {
+        flex-grow: 0;
+        vertical-align: middle;
+        order: 5;
+        margin: 0;
+        margin: 0 4%;
+    }
+
+
+}
+
+#login {
+    padding: 10px;
+    position: relative;
+    @include center;
+    
+    #wrapper {
+        max-width: 50%;
+        max-height: 50%;
+        
+        h1 {
+            font-family: 'helvetica', 'arial', sans-serif;
+            width: 100%;
+            text-align: center;
+        }
+    }
+    
+    form {
+        text-align: center;    
+        
+        input {
+            margin: 10px;
+        }
+    }
+}
+
+#reimbursement-table {
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 3%;
+    min-height: 0%;
+    border-collapse: collapse;
+    border:1px solid #DDD;
+    tr {
+        border-top: 1px solid #DDD;
+    }
+    td:not(:last-of-type) {
+        border-right: 1px solid #DDD;
+    }
+    * {
+        padding: 5px;
+    }
+    .amount {
+        text-align: right;
+    }
+    tr:nth-child(even) {
+        background: $table-offColor;
+    }
+    tbody tr:hover {
+        cursor: pointer;
+        border: 1px solid black;
+    }
+    .description {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-height: 100%;
+    }
+
+
+}
+#reimbursement-table thead {
+    border-bottom: solid 1px black;
+}
+
+#reimbursement-table-title {
+    padding: 5px;
+    h3 {
+        text-align: center;
+        padding: 0;
+        margin: 0;
+    }
+    border-bottom: 1px solid grey;
+}
+
+#reimbursement-table-head > * {
+    font-weight: bold;
+    text-align: center;
+}
+
+#reimbursement-table-head, #reimbursement-table-item {
+    display: flex;
+    flex-direction: row;
+
+    *:not
+    .amount {
+        flex-grow: 0;
+        width: 15%;
+    }
+
+    .date {
+        flex-grow: 0;
+        width: 15%;
+        border-right: 1px solid #BBB;
+    }
+
+    .status {
+        flex-grow: 0;
+        width: 15%;
+        border-right: 1px solid #BBB;
+    }
+
+    .description {
+        flex-grow: 5;
+    }
+
+}
+
+.status.pending {
+    color: gray;
+    ::after {
+        content: "Pending";
+    }
+}
+
+
+.status.denied {
+    color: darkred;
+    
+    ::after {
+        content: "Denied";
+    }
+}
+
+
+.status.approved {
+    color: darkgreen;
+    ::after {
+        content: "Approved";
+    }
+}
+
+.error-page {
+    #wrapper {
+        width: 100vw;
+        min-height: 100vh;
+        display: flex;
+        text-align: center;
+        align-items: center;
+        flex-direction: row;
+        background: #222;
+
+        div {
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #DDD;
+            display: flex;
+            align-items: center;     /* Align the flex-items vertically */
+            justify-content: center;
+        }
+
+        p {
+            color: #DDD;
+            display: flex;
+            align-items: center;     /* Align the flex-items vertically */
+            justify-content: center;
+        }
+
+    }
+}

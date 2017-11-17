@@ -1,0 +1,225 @@
+2017-11-13 14:42:36 TRACE ReimbursementStatusUnitTests:58 - valueMap size -> 0, ReimbursementStatus values length -> 3
+2017-11-13 14:44:32 TRACE ReimbursementStatusUnitTests:58 - valueMap size -> 0, ReimbursementStatus values length -> 3
+2017-11-13 14:47:03 TRACE ReimbursementStatusUnitTests:45 - Loading status: 
+2017-11-13 14:47:03 TRACE ReimbursementStatusUnitTests:45 - Loading status: 
+2017-11-13 14:47:03 TRACE ReimbursementStatusUnitTests:45 - Loading status: 
+2017-11-13 14:47:03 TRACE ReimbursementStatusUnitTests:60 - valueMap size -> 3, ReimbursementStatus values length -> 3
+2017-11-13 14:57:06 TRACE ReimbursementTypeUnitTests:59 - valueMap size -> 4, ReimbursementStatus values length -> 4
+2017-11-13 14:57:55 TRACE ReimbursementStatusUnitTests:59 - valueMap size -> 3, ReimbursementStatus values length -> 3
+2017-11-13 14:57:55 TRACE ReimbursementTypeUnitTests:59 - valueMap size -> 4, ReimbursementType values length -> 4
+2017-11-13 15:06:07 TRACE UserRoleUnitTests:59 - valueMap size -> 2, Role values length -> 3
+2017-11-13 15:06:44 TRACE UserRoleUnitTests:59 - valueMap size -> 2, Role values length -> 3
+2017-11-13 15:06:54 TRACE ReimbursementStatusUnitTests:59 - valueMap size -> 3, ReimbursementStatus values length -> 3
+2017-11-13 15:06:54 TRACE ReimbursementTypeUnitTests:59 - valueMap size -> 4, ReimbursementType values length -> 4
+2017-11-13 15:06:55 TRACE UserRoleUnitTests:59 - valueMap size -> 2, Role values length -> 3
+2017-11-14 10:09:49 INFO  UserServiceTests:24 - N¼_c@m?f?rÍC]¦ ?[dZ{¬?FL«?M?Á°?Â??§x¡Ó?|
+2017-11-14 10:10:49 INFO  UserServiceTests:24 - ?MUABsrbC?dNg?bPHBX5{O?P??cVHa?SY?oFJDsq
+2017-11-14 10:11:06 INFO  UserServiceTests:24 - kD[????S?VZ?eN?RR?CN?X~zkA>d?bwb_WRtYMO
+2017-11-14 10:11:56 INFO  UserServiceTests:24 - R3U3BC6CHOQM4QIWK5W8M6UD45CBTAQD8VPHWA8A
+2017-11-14 10:15:53 INFO  UserServiceTests:26 - 3NF9MANI474A3U4TP5CG971DNXD77PTVQY51XKY1
+2017-11-14 10:16:01 INFO  UserServiceTests:26 - MKU0U1ZL6GMSW1HM3RRSMJE74DSKBFJQC32HNE0W
+2017-11-14 10:19:36 INFO  UserServiceTests:26 - FJ70S5OCWULOCDNASPV2ZR3O4QB1FWFFER1JDYGY
+2017-11-14 10:19:44 INFO  UserServiceTests:26 - KX2WRV50Q0CHE8IDKQPG0JU5GX4TTT7PS4A36M2Z
+2017-11-14 10:27:17 INFO  UserServiceTests:33 - QX7YDSKKIRBCAL98G3VCJ1BWG0I4RYAH8A6ETGIA
+2017-11-14 10:29:31 INFO  UserServiceTests:33 - S202DH7149UGMTFB5PPNUUB9YR8D62PPNGULG479
+2017-11-14 10:29:40 INFO  UserServiceTests:33 - 37D6N8ZKQLD86FLY2IXYW4TD0J1ZCSI6056GZR1E
+2017-11-14 10:30:46 INFO  UserServiceTests:33 - 19UK7DBDIDLHMXEH5HKJG7Z599C9M9SZ53PCG4V4
+2017-11-14 10:33:04 INFO  UserServiceTests:33 - GUMFC8QEIC7AM81WI3YCYSIC9D8GYHZ8HLZDRRKU
+2017-11-14 10:34:26 INFO  UserServiceTests:33 - D514HNQRLNBVAB2PQEMSLN74SO14CWTXJXV5M72F
+2017-11-14 10:36:57 TRACE ReimbursementStatusUnitTests:59 - valueMap size -> 3, ReimbursementStatus values length -> 3
+2017-11-14 10:36:57 TRACE ReimbursementTypeUnitTests:59 - valueMap size -> 4, ReimbursementType values length -> 4
+2017-11-14 10:36:58 TRACE UserRoleUnitTests:59 - valueMap size -> 2, Role values length -> 3
+2017-11-14 10:36:58 INFO  UserServiceTests:33 - 3KNGYMPYSAQWID33TSKH46DKPN71P7KUDXIXG4QH
+2017-11-14 13:27:26 TRACE ReimbursementStatusUnitTests:59 - valueMap size -> 3, ReimbursementStatus values length -> 3
+2017-11-14 13:27:26 TRACE ReimbursementTypeUnitTests:59 - valueMap size -> 4, ReimbursementType values length -> 4
+2017-11-14 13:27:27 TRACE UserRoleUnitTests:59 - valueMap size -> 2, Role values length -> 3
+2017-11-14 13:27:27 INFO  UserServiceTests:33 - QYIIK0QNWJ8WYVPIOBGJZ3LL8P6V68J6W8V4B1YT
+2017-11-14 13:27:43 TRACE ReimbursementStatusUnitTests:59 - valueMap size -> 3, ReimbursementStatus values length -> 3
+2017-11-14 13:27:43 TRACE ReimbursementTypeUnitTests:59 - valueMap size -> 4, ReimbursementType values length -> 4
+2017-11-14 13:27:44 TRACE UserRoleUnitTests:59 - valueMap size -> 2, Role values length -> 3
+2017-11-14 13:27:44 INFO  UserServiceTests:33 - 11AX522P6CUZ2041LDTMMQ375E0UEUYV6MJYE2GK
+2017-11-14 14:08:23 TRACE ReimbursementStatusUnitTests:59 - valueMap size -> 3, ReimbursementStatus values length -> 3
+2017-11-14 14:08:23 TRACE ReimbursementTypeUnitTests:59 - valueMap size -> 4, ReimbursementType values length -> 4
+2017-11-14 14:08:24 TRACE UserRoleUnitTests:60 - valueMap size -> 2, Role values length -> 3
+2017-11-14 14:08:24 INFO  UserServiceTests:33 - VZ6F5IK0DRLX4MPC5JV3OGSM8WPRSXV6AZ6W1BYP
+2017-11-14 14:09:00 TRACE ReimbursementStatusUnitTests:59 - valueMap size -> 3, ReimbursementStatus values length -> 3
+2017-11-14 14:09:01 TRACE ReimbursementTypeUnitTests:59 - valueMap size -> 4, ReimbursementType values length -> 4
+2017-11-14 14:09:01 TRACE UserRoleUnitTests:60 - valueMap size -> 2, Role values length -> 3
+2017-11-14 14:09:01 INFO  UserServiceTests:33 - IBR9YDVSOYSXBBBOTE56OYMFYT55O372ZNIPO9MB
+2017-11-14 14:10:39 TRACE ReimbursementStatusUnitTests:59 - valueMap size -> 3, ReimbursementStatus values length -> 3
+2017-11-14 14:10:39 TRACE ReimbursementTypeUnitTests:59 - valueMap size -> 4, ReimbursementType values length -> 4
+2017-11-14 14:10:40 TRACE UserRoleUnitTests:60 - valueMap size -> 2, Role values length -> 3
+2017-11-14 14:10:40 INFO  UserServiceTests:33 - W6RVSWAJDBOYMWGWD6WIFCR1B25NMSWZI7ALGAEP
+2017-11-14 14:11:12 TRACE ReimbursementStatusUnitTests:59 - valueMap size -> 3, ReimbursementStatus values length -> 3
+2017-11-14 14:11:12 TRACE ReimbursementTypeUnitTests:59 - valueMap size -> 4, ReimbursementType values length -> 4
+2017-11-14 14:11:13 TRACE UserRoleUnitTests:60 - valueMap size -> 2, Role values length -> 3
+2017-11-14 14:11:13 INFO  UserServiceTests:33 - FPYVAXVRQ1FHWATG0VN9A0Q9ONX6KI3YQ6YZEQKI
+2017-11-14 16:39:04 TRACE ReimbursementStatusUnitTests:59 - valueMap size -> 3, ReimbursementStatus values length -> 3
+2017-11-14 16:39:05 TRACE ReimbursementTypeUnitTests:59 - valueMap size -> 4, ReimbursementType values length -> 4
+2017-11-14 16:39:05 TRACE UserRoleUnitTests:60 - valueMap size -> 2, Role values length -> 3
+2017-11-14 16:39:05 INFO  UserServiceTests:33 - 50DWYJ47WSM7DVWJC5T22CB5F0EPRBDSLA04Y6RV
+2017-11-14 16:41:44 TRACE ReimbursementStatusUnitTests:59 - valueMap size -> 3, ReimbursementStatus values length -> 3
+2017-11-14 16:41:44 TRACE ReimbursementTypeUnitTests:59 - valueMap size -> 4, ReimbursementType values length -> 4
+2017-11-14 16:41:45 TRACE UserRoleUnitTests:60 - valueMap size -> 2, Role values length -> 3
+2017-11-14 16:41:45 INFO  UserServiceTests:33 - HZ3YJ0Y1255FP3GGMWEFP6DXUKV3W8U1HOYF8A16
+2017-11-14 16:42:08 TRACE ReimbursementStatusUnitTests:59 - valueMap size -> 3, ReimbursementStatus values length -> 3
+2017-11-14 16:42:09 TRACE ReimbursementTypeUnitTests:59 - valueMap size -> 4, ReimbursementType values length -> 4
+2017-11-14 16:42:09 TRACE UserRoleUnitTests:60 - valueMap size -> 2, Role values length -> 3
+2017-11-14 16:42:09 INFO  UserServiceTests:33 - DV7U8OIBU88EO7I6T6N4PVGJ56RZGLNO82L0UMO5
+2017-11-14 16:42:26 TRACE ReimbursementStatusUnitTests:59 - valueMap size -> 3, ReimbursementStatus values length -> 3
+2017-11-14 16:42:27 TRACE ReimbursementTypeUnitTests:59 - valueMap size -> 4, ReimbursementType values length -> 4
+2017-11-14 16:42:27 TRACE UserRoleUnitTests:60 - valueMap size -> 2, Role values length -> 3
+2017-11-14 16:42:27 INFO  UserServiceTests:33 - WKNZTFW7M2Z3SR4ON9NEK2RDYS2LDU66E4TXISLS
+2017-11-14 16:43:11 TRACE ReimbursementStatusUnitTests:59 - valueMap size -> 3, ReimbursementStatus values length -> 3
+2017-11-14 16:43:11 TRACE ReimbursementTypeUnitTests:59 - valueMap size -> 4, ReimbursementType values length -> 4
+2017-11-14 16:43:12 TRACE UserRoleUnitTests:60 - valueMap size -> 2, Role values length -> 3
+2017-11-14 16:43:12 INFO  UserServiceTests:33 - OGIAUIERR6E00YI8V0NCS16R8LIFQQVFOS9E0MAQ
+2017-11-14 16:43:57 TRACE ReimbursementStatusUnitTests:59 - valueMap size -> 3, ReimbursementStatus values length -> 3
+2017-11-14 16:43:58 TRACE ReimbursementTypeUnitTests:59 - valueMap size -> 4, ReimbursementType values length -> 4
+2017-11-14 16:43:58 TRACE UserRoleUnitTests:60 - valueMap size -> 2, Role values length -> 3
+2017-11-14 16:43:58 INFO  UserServiceTests:33 - X50VFUN8GBJG89BX83G40BSWDZRMSETUOWXKKGNR
+2017-11-14 16:44:13 TRACE ReimbursementStatusUnitTests:59 - valueMap size -> 3, ReimbursementStatus values length -> 3
+2017-11-14 16:44:16 TRACE ReimbursementTypeUnitTests:59 - valueMap size -> 4, ReimbursementType values length -> 4
+2017-11-14 16:44:17 TRACE UserRoleUnitTests:60 - valueMap size -> 2, Role values length -> 3
+2017-11-14 16:44:17 INFO  UserServiceTests:33 - T53GE0Z9J3XZTGUTM66Q980FIYMB0GL6YZSFROH3
+2017-11-14 20:31:45 TRACE ReimbursementStatusUnitTests:59 - valueMap size -> 3, ReimbursementStatus values length -> 3
+2017-11-14 20:31:46 TRACE ReimbursementTypeUnitTests:59 - valueMap size -> 4, ReimbursementType values length -> 4
+2017-11-14 20:31:47 TRACE UserRoleUnitTests:60 - valueMap size -> 2, Role values length -> 3
+2017-11-14 20:31:47 INFO  UserServiceTests:33 - ZEZF2L5KTJRS30QF7I3RI4LK7KZ5XNHGIXTWLRUZ
+2017-11-14 20:36:04 TRACE ReimbursementStatusUnitTests:59 - valueMap size -> 3, ReimbursementStatus values length -> 3
+2017-11-14 20:36:05 TRACE ReimbursementTypeUnitTests:59 - valueMap size -> 4, ReimbursementType values length -> 4
+2017-11-14 20:36:06 TRACE UserRoleUnitTests:60 - valueMap size -> 2, Role values length -> 3
+2017-11-14 20:36:06 INFO  UserServiceTests:33 - 5EJSV8BXA1YMNUX1Q2TNNST89EKMXJXL5MF8SQOT
+2017-11-14 20:37:13 TRACE ReimbursementStatusUnitTests:59 - valueMap size -> 3, ReimbursementStatus values length -> 3
+2017-11-14 20:37:14 TRACE ReimbursementTypeUnitTests:59 - valueMap size -> 4, ReimbursementType values length -> 4
+2017-11-14 20:37:15 TRACE UserRoleUnitTests:60 - valueMap size -> 2, Role values length -> 3
+2017-11-14 20:37:15 INFO  UserServiceTests:33 - WAVB05G4E6EJHP5O0ZZRM7OUDX9KMII9R7FEORZ7
+2017-11-14 20:39:39 TRACE ReimbursementStatusUnitTests:59 - valueMap size -> 3, ReimbursementStatus values length -> 3
+2017-11-14 20:39:40 TRACE ReimbursementTypeUnitTests:59 - valueMap size -> 4, ReimbursementType values length -> 4
+2017-11-14 20:39:41 TRACE UserRoleUnitTests:60 - valueMap size -> 2, Role values length -> 3
+2017-11-14 20:39:41 INFO  UserServiceTests:33 - KFEEPD63VCIHX8M8VM5VCM7LNYEDKT05W4B7P7SZ
+2017-11-14 20:40:18 TRACE ReimbursementStatusUnitTests:59 - valueMap size -> 3, ReimbursementStatus values length -> 3
+2017-11-14 20:40:19 TRACE ReimbursementTypeUnitTests:59 - valueMap size -> 4, ReimbursementType values length -> 4
+2017-11-14 20:40:20 TRACE UserRoleUnitTests:60 - valueMap size -> 2, Role values length -> 3
+2017-11-14 20:40:20 INFO  UserServiceTests:33 - UY68HLLYX2HS6IDYJLUZ38SU6O1727P5TLRHXW82
+2017-11-14 21:00:17 TRACE UsersDAOJdbc:46 - Searching for user with username: TestingUserUsername
+2017-11-14 21:00:17 TRACE UsersDAOJdbc:57 - User found with id: 21
+2017-11-14 21:15:42 TRACE UsersDAOJdbc:46 - Searching for user with username: TestingUserUsername
+2017-11-14 21:15:42 TRACE UsersDAOJdbc:57 - User found with id: 22
+2017-11-14 21:16:08 TRACE UsersDAOJdbc:46 - Searching for user with username: TestingUserUsername
+2017-11-14 21:16:08 TRACE UsersDAOJdbc:57 - User found with id: 23
+2017-11-14 21:16:54 TRACE UsersDAOJdbc:46 - Searching for user with username: TestingUserUsername
+2017-11-14 21:16:54 TRACE UsersDAOJdbc:57 - User found with id: 24
+2017-11-14 21:16:55 ERROR UsersDAOJdbc:141 - User update failed due to an SQLException
+2017-11-14 21:16:55 ERROR UsersDAOJdbc:142 - java.sql.SQLSyntaxErrorException: ORA-00904: "ID": invalid identifier
+
+2017-11-14 21:17:27 TRACE UsersDAOJdbc:46 - Searching for user with username: TestingUserUsername
+2017-11-14 21:17:27 TRACE UsersDAOJdbc:57 - User found with id: 25
+2017-11-14 21:18:07 TRACE UsersDAOJdbc:46 - Searching for user with username: TestingUserUsername
+2017-11-14 21:18:07 TRACE UsersDAOJdbc:57 - User found with id: 26
+2017-11-14 21:20:55 TRACE UsersDAOJdbc:46 - Searching for user with username: TestingUserUsername
+2017-11-14 21:20:56 TRACE UsersDAOJdbc:57 - User found with id: 27
+2017-11-14 21:27:42 TRACE UsersDAOJdbc:46 - Searching for user with username: TestingUserUsername
+2017-11-14 21:27:42 TRACE UsersDAOJdbc:57 - User found with id: 28
+2017-11-14 21:28:04 TRACE UsersDAOJdbc:46 - Searching for user with username: TestingUserUsername
+2017-11-14 21:28:04 TRACE UsersDAOJdbc:57 - User found with id: 29
+2017-11-14 21:28:04 TRACE UsersDaoJdbcTest:113 - Old user object username: ChangedTestUsername, new user object username: TestingUserUsername
+2017-11-14 21:43:40 TRACE UsersDAOJdbc:46 - Searching for user with username: TestingUserUsername
+2017-11-14 21:43:40 TRACE UsersDAOJdbc:57 - User found with id: 30
+2017-11-14 21:43:41 TRACE UsersDaoJdbcTest:113 - Old user object username: ChangedTestUsername, new user object username: TestingUserUsername
+2017-11-14 21:49:38 TRACE UsersDAOJdbc:46 - Searching for user with username: TestingUserUsername
+2017-11-14 21:49:38 TRACE UsersDAOJdbc:57 - User found with id: 31
+2017-11-14 21:49:38 TRACE UsersDAOJdbc:132 - Saving user
+2017-11-14 21:49:38 TRACE UsersDaoJdbcTest:113 - Old user object username: ChangedTestUsername, new user object username: TestingUserUsername
+2017-11-14 21:58:39 TRACE UsersDAOJdbc:46 - Searching for user with username: TestingUserUsername
+2017-11-14 21:58:39 TRACE UsersDAOJdbc:57 - User found with id: 32
+2017-11-14 21:58:39 TRACE UsersDAOJdbc:132 - Saving user
+2017-11-14 21:58:39 TRACE UsersDaoJdbcTest:113 - Old user object username: ChangedTestUsername, new user object username: TestingUserUsername
+2017-11-14 22:01:29 TRACE ReimbursementStatusUnitTests:59 - valueMap size -> 3, ReimbursementStatus values length -> 3
+2017-11-14 22:01:29 TRACE UsersDAOJdbc:46 - Searching for user with username: TestingUserUsername
+2017-11-14 22:01:30 TRACE UsersDAOJdbc:57 - User found with id: 33
+2017-11-14 22:01:30 TRACE UsersDAOJdbc:132 - Saving user
+2017-11-14 22:01:30 TRACE UsersDaoJdbcTest:113 - Old user object username: ChangedTestUsername, new user object username: TestingUserUsername
+2017-11-14 22:01:32 TRACE ReimbursementTypeUnitTests:59 - valueMap size -> 4, ReimbursementType values length -> 4
+2017-11-14 22:01:33 TRACE UserRoleUnitTests:60 - valueMap size -> 2, Role values length -> 3
+2017-11-14 22:01:33 INFO  UserServiceTests:33 - LLDI9N7ELWLGWTGVV0W5KGGS8I45HTDRFEZ43MQH
+2017-11-14 22:01:35 TRACE UsersDAOJdbc:46 - Searching for user with username: TestingUserUsername
+2017-11-14 22:01:35 TRACE UsersDAOJdbc:57 - User found with id: 34
+2017-11-14 22:01:35 TRACE UsersDAOJdbc:132 - Saving user
+2017-11-14 22:01:35 TRACE UsersDaoJdbcTest:113 - Old user object username: ChangedTestUsername, new user object username: TestingUserUsername
+2017-11-14 22:05:26 TRACE ReimbursementStatusUnitTests:59 - valueMap size -> 3, ReimbursementStatus values length -> 3
+2017-11-14 22:05:27 TRACE ReimbursementTypeUnitTests:59 - valueMap size -> 4, ReimbursementType values length -> 4
+2017-11-14 22:05:27 TRACE UserRoleUnitTests:60 - valueMap size -> 2, Role values length -> 3
+2017-11-14 22:05:27 INFO  UserServiceTests:33 - 23LC80DNHLAIHHV4XAFJ9KO075OF9JLB0LIKQ8S4
+2017-11-14 22:05:28 TRACE UsersDAOJdbc:46 - Searching for user with username: TestingUserUsername
+2017-11-14 22:05:28 TRACE UsersDAOJdbc:57 - User found with id: 35
+2017-11-14 22:05:28 TRACE UsersDAOJdbc:132 - Saving user
+2017-11-14 22:05:28 TRACE UsersDAOJdbc:46 - Searching for user with username: ChangedUsername
+2017-11-14 22:07:01 TRACE ReimbursementStatusUnitTests:59 - valueMap size -> 3, ReimbursementStatus values length -> 3
+2017-11-14 22:07:02 TRACE ReimbursementTypeUnitTests:59 - valueMap size -> 4, ReimbursementType values length -> 4
+2017-11-14 22:07:02 TRACE UserRoleUnitTests:60 - valueMap size -> 2, Role values length -> 3
+2017-11-14 22:07:02 INFO  UserServiceTests:33 - XLOLTYJ3KC0584QD54UXSM9JBHRCA1R9PFO66K27
+2017-11-14 22:07:04 TRACE UsersDAOJdbc:46 - Searching for user with username: TestingUserUsername
+2017-11-14 22:07:04 TRACE UsersDAOJdbc:57 - User found with id: 36
+2017-11-14 22:07:04 TRACE UsersDAOJdbc:132 - Saving user
+2017-11-14 22:07:04 TRACE UsersDAOJdbc:46 - Searching for user with username: ChangedUsername
+2017-11-14 22:07:04 TRACE UsersDAOJdbc:46 - Searching for user with username: TestingUserUsername
+2017-11-14 22:07:04 TRACE UsersDAOJdbc:57 - User found with id: 36
+2017-11-14 22:07:04 TRACE UsersDaoJdbcTest:128 - Old user object username: ChangedUsername, new user object username: TestingUserUsername
+2017-11-14 22:08:52 TRACE ReimbursementStatusUnitTests:59 - valueMap size -> 3, ReimbursementStatus values length -> 3
+2017-11-14 22:08:52 TRACE ReimbursementTypeUnitTests:59 - valueMap size -> 4, ReimbursementType values length -> 4
+2017-11-14 22:08:53 TRACE UserRoleUnitTests:60 - valueMap size -> 2, Role values length -> 3
+2017-11-14 22:08:53 INFO  UserServiceTests:33 - M6VQ4M12STZGPYR5USPKYKHUOFJU0JB6WJRECNYS
+2017-11-14 22:08:54 TRACE UsersDAOJdbc:46 - Searching for user with username: TestingUserUsername
+2017-11-14 22:08:54 TRACE UsersDAOJdbc:57 - User found with id: 37
+2017-11-14 22:08:54 TRACE UsersDAOJdbc:133 - Saving user
+2017-11-14 22:08:54 TRACE UsersDaoJdbcTest:128 - Old user object username: ChangedUsername, new user object username: ChangedUsername
+2017-11-14 22:14:49 TRACE ReimbursementStatusUnitTests:59 - valueMap size -> 3, ReimbursementStatus values length -> 3
+2017-11-14 22:14:50 TRACE ReimbursementTypeUnitTests:59 - valueMap size -> 4, ReimbursementType values length -> 4
+2017-11-14 22:14:50 TRACE UserRoleUnitTests:60 - valueMap size -> 2, Role values length -> 3
+2017-11-14 22:14:50 INFO  UserServiceTests:33 - 90B6D5TW84AL0UA6UFOQXOM0EXL4U5PPI1HSNXLS
+2017-11-14 22:14:51 TRACE UsersDAOJdbc:46 - Searching for user with username: TestingUserUsername
+2017-11-14 22:14:51 TRACE UsersDAOJdbc:57 - User found with id: 38
+2017-11-14 22:14:51 TRACE UsersDAOJdbc:133 - Saving user
+2017-11-14 22:14:51 TRACE UsersDaoJdbcTest:123 - Old user object username: ChangedUsername, new user object username: ChangedUsername
+2017-11-14 22:14:51 ERROR UsersDAOJdbc:212 - Update passhash/salt failed due to an SQLException
+2017-11-14 22:14:51 ERROR UsersDAOJdbc:213 - java.sql.SQLSyntaxErrorException: ORA-01747: invalid user.table.column, table.column, or column specification
+
+2017-11-14 22:20:27 TRACE ReimbursementStatusUnitTests:59 - valueMap size -> 3, ReimbursementStatus values length -> 3
+2017-11-14 22:20:28 TRACE ReimbursementTypeUnitTests:59 - valueMap size -> 4, ReimbursementType values length -> 4
+2017-11-14 22:20:28 TRACE UserRoleUnitTests:60 - valueMap size -> 2, Role values length -> 3
+2017-11-14 22:20:28 INFO  UserServiceTests:33 - K5U54NQ3KW6ELAFJBTGL214BZ7DGR6DJVGLGCOZ9
+2017-11-14 22:20:29 TRACE UsersDAOJdbc:46 - Searching for user with username: TestingUserUsername
+2017-11-14 22:20:29 TRACE UsersDAOJdbc:57 - User found with id: 39
+2017-11-14 22:20:29 TRACE UsersDAOJdbc:133 - Saving user
+2017-11-14 22:20:29 TRACE UsersDaoJdbcTest:123 - Old user object username: ChangedUsername, new user object username: ChangedUsername
+2017-11-14 22:20:30 ERROR UsersDAOJdbc:212 - Update passhash/salt failed due to an SQLException
+2017-11-14 22:20:30 ERROR UsersDAOJdbc:213 - java.sql.SQLSyntaxErrorException: ORA-01747: invalid user.table.column, table.column, or column specification
+
+2017-11-14 22:22:46 TRACE ReimbursementStatusUnitTests:59 - valueMap size -> 3, ReimbursementStatus values length -> 3
+2017-11-14 22:22:46 TRACE ReimbursementTypeUnitTests:59 - valueMap size -> 4, ReimbursementType values length -> 4
+2017-11-14 22:22:47 TRACE UserRoleUnitTests:60 - valueMap size -> 2, Role values length -> 3
+2017-11-14 22:22:47 INFO  UserServiceTests:33 - VMMC4TQBXYRUC16UCTMH67FMTP8VJW4WW3G8VWS4
+2017-11-14 22:22:48 TRACE UsersDAOJdbc:46 - Searching for user with username: TestingUserUsername
+2017-11-14 22:22:48 TRACE UsersDAOJdbc:57 - User found with id: 40
+2017-11-14 22:22:48 TRACE UsersDAOJdbc:133 - Saving user
+2017-11-14 22:22:48 TRACE UsersDaoJdbcTest:123 - Old user object username: ChangedUsername, new user object username: ChangedUsername
+2017-11-14 22:22:48 ERROR UsersDAOJdbc:212 - Update passhash/salt failed due to an SQLException
+2017-11-14 22:22:48 ERROR UsersDAOJdbc:213 - java.sql.SQLSyntaxErrorException: ORA-00904: "ID": invalid identifier
+
+2017-11-14 22:22:59 TRACE ReimbursementStatusUnitTests:59 - valueMap size -> 3, ReimbursementStatus values length -> 3
+2017-11-14 22:22:59 TRACE ReimbursementTypeUnitTests:59 - valueMap size -> 4, ReimbursementType values length -> 4
+2017-11-14 22:23:00 TRACE UserRoleUnitTests:60 - valueMap size -> 2, Role values length -> 3
+2017-11-14 22:23:00 INFO  UserServiceTests:33 - NLBQX0DAXE1A9R7ROEKCPSP1Y84YP2R2C7J4T26X
+2017-11-14 22:23:01 TRACE UsersDAOJdbc:46 - Searching for user with username: TestingUserUsername
+2017-11-14 22:23:01 TRACE UsersDAOJdbc:57 - User found with id: 41
+2017-11-14 22:23:01 TRACE UsersDAOJdbc:133 - Saving user
+2017-11-14 22:23:01 TRACE UsersDaoJdbcTest:123 - Old user object username: ChangedUsername, new user object username: ChangedUsername
+2017-11-15 16:30:02 TRACE ReimbursementStatusUnitTests:59 - valueMap size -> 3, ReimbursementStatus values length -> 3
+2017-11-15 16:30:03 TRACE UsersDAOJdbc:46 - Searching for user with username: TestingUserUsername
+2017-11-15 16:30:03 TRACE UsersDAOJdbc:57 - User found with id: 42
+2017-11-15 16:30:03 TRACE UsersDAOJdbc:133 - Saving user
+2017-11-15 16:30:03 TRACE UsersDaoJdbcTest:132 - Old user object username: ChangedUsername, new user object username: ChangedUsername
+2017-11-15 16:30:04 TRACE ReimbursementTypeUnitTests:59 - valueMap size -> 4, ReimbursementType values length -> 4
+2017-11-15 16:30:05 TRACE UserRoleUnitTests:60 - valueMap size -> 2, Role values length -> 3
+2017-11-15 16:30:05 INFO  UserServiceTests:33 - T79ESYFW86Q1JXLIQ1JDLIN8DSJX7VUVCS6CLVTO

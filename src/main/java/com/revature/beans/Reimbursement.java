@@ -3,14 +3,16 @@ package com.revature.beans;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
+import com.revature.input.objects.ReimbursementRequest;
+
 public class Reimbursement {
 	private BigDecimal amount;
 	private Integer id;
 	private LocalDateTime submitted;
 	private LocalDateTime resolved;
 	private String description;
-	private transient User author;
-	private transient User resolver;
+	private User author;
+	private User resolver;
 	private ReimbursementStatus status;
 	private ReimbursementType type;
 	
@@ -85,6 +87,20 @@ public class Reimbursement {
 		this.resolver = resolver;
 		this.status = status;
 		this.type = type;
+	}
+	
+	public Reimbursement() {
+		super();
+	}
+	
+	public Reimbursement(User user, ReimbursementRequest reimbRequest) {
+		Reimbursement reimbursement = new Reimbursement();
+		reimbursement.setAmount(reimbRequest.getAmount());
+		reimbursement.setAuthor(user);
+		reimbursement.setDescription(reimbRequest.getDescription());
+		reimbursement.setStatus(ReimbursementStatus.PENDING);
+		reimbursement.setSubmitted(LocalDateTime.now());
+		reimbursement.setType(ReimbursementType.valueOf(reimbRequest.getType().toUpperCase()));
 	}
 	
 }

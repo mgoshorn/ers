@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <link rel="stylesheet" href="/ers/static/styles/ers.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Expenditure Reimbursement System</title>
+</head>
+<body>
+    <div id="ers-loading-modal" class="hidden invis"><div class="loader"></div></div>
+    <div id="modal-backdrop" class="hidden invis"></div>
+
+    <div id="userbar" class="hidden invis">
+        <button>New Request</button>
+        <h1>
+            Expense Reimbursement Portal
+        </h1>
+        <div id="userbar-username">Username</div>
+    </div>
+
+    <div id="login" class="view">
+        <div id="wrapper">
+            <h1>Expense Reimbursement Portal</h1>
+            <br>
+            <form>
+                <input id="username" type="text" placeholder="username">
+                <br>
+                <input id="password" type="password" placeholder="password">
+                <br>
+                <input type="button" value="Log in" onclick="login()">
+            </form>
+        </div>
+    </div>
+
+    <div id='directory' class='view hidden invis'>
+        <h1>Choose an option below</h1>
+        <div id="directory-container">
+            <div id="request-history" class="directory-button" onclick="directory.toRequestHistory()">
+                <div class="request-icon">🖹</div>
+                <div class="request-desc">View Request History</div>
+            
+            </div>
+            <div id="create-request" class="directory-button">
+                <div class="request-icon">✎</div>
+                <div class="request-desc">Create Request</div>
+            </div>
+            <div id="audit-request" class="directory-button hidden">
+                <div class="request-icon">✔</div>
+                <div class="request-desc">Audit Requests</div>
+            </div>
+            <div id="audit-history" class="directory-button invis hidden">
+                    <div class="request-icon">📋</div>
+                    <div class="request-desc">Audit History</div>
+            </div>
+            <div id="search-request" class="directory-button invis hidden">
+                <div class="request-icon">&#x1F50D;</div>
+                <div class="request-desc">Search Requests</div>
+            </div>
+            <div id="user-management" class="directory-button invis hidden">
+                <div class="request-icon">🔑</div>
+                <div class="request-desc">Manager Users</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="expense-view" class="view hidden invis">
+        
+        <div id='new-request' class='window-view'>
+            <form>
+                <div class="form-row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="amount">Reimbursement Amount:</label>
+                            <input type="number" class="form-control" id="amount" placeholder="Amount">
+                        </div>
+                        <div class="form-group">
+                            <label for="type">Reimbursement Category:</label>
+                            <select class="form-control" id="type">
+                                <option value="lodging">Lodging</option>
+                                <option value="travel">Travel</option>
+                                <option value="food">Food</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="receipt">Receipt Image:</label>
+                            <input type="file" class="form-control" id="receipt-img">
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6" id="description-container">
+                        <label for="description">Enter description of the expense:</label>
+                        <textarea class="form-control" placeholder="description" id="create-description"></textarea>
+                    </div>
+                </div>
+                    <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <button type="button" class="btn btn-default" id='expense-create-submit'>Submit</button>
+                    </div>    
+                    </div>
+                    
+            </form>
+        </div>
+
+        <!-- <div id='new-request' class='window-view'>
+            <form>
+                <div class="form-row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="amount">Reimbursement Amount:</label>
+                            <input type="number" class="form-control" id="amount">
+                        </div>
+                        <div class="form-group">
+                            <label for="type">Reimbursement Category:</label>
+                            <select class="form-control" id="type">
+                                <option value="lodging">Lodging</option>
+                                <option value="travel">Travel</option>
+                                <option value="food">Food</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="description">Enter description of the expense:</label>
+                        <textarea class="form-control" placeholder="description"></textarea>
+                    </div>
+                </div>
+                 <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <button type="button" class="btn btn-default" id='expense-create-submit'>Submit</button>
+                    </div>    
+                 </div>
+                 
+            </form>
+        </div> -->
+        
+        <table class="table" id="reimbursement-table">
+            <thead id="reimbursement-table-head">
+                <tr>
+                    <td class="amount">AMOUNT</td>
+                    <td class="date">REQUESTED</td>
+                    <td class="date">RESOLVED</td>
+                    <td class="status">STATUS</td>
+                    <td class="description">DESCRIPTION</td>
+                </tr>
+            </thead>
+            <tbody id="reimbursement-table-body">
+                <tr class="reimbursement-table-item">
+                    <td class="amount"  >$150.00</td>
+                    <td class="date">2017-08-28</td>
+                    <td class="date">--</td>
+                    <td class="status pending">PENDING</td>
+                    <td class="description">A generic reimubrsement request</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+        
+    <script src="/ers/static/js/login.js"></script>
+    <script src="/ers/static/js/view.js"></script>
+    <script src="/ers/static/js/user.js"></script>
+    <script src="/ers/static/js/get.js"></script>
+    <script src="/ers/static/js/directory.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+</body>
+</html>

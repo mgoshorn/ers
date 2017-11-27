@@ -54,4 +54,25 @@ public class UserServiceTests {
 			assertTrue(collisions <= tolerance);
 		}
 	}
+	
+	@Test
+	public void specialCharactersReqTest() throws Exception {
+		String allAlpha = "abcdefghijklmonop";
+		String allNum = "234567876543";
+		String mixAlphaNum = "lkjafsld12884";
+		String spaces = "                    ";
+		String mixSpecial = "jlls&31!**32";
+		String testTest = "testingacc1!";
+		
+		Method specialChars = UserService.class.getDeclaredMethod("meetsContainsSpecialCharReq", String.class);
+		specialChars.setAccessible(true);
+		
+		
+		assertFalse((boolean)specialChars.invoke(service, allAlpha));
+		assertFalse((boolean)specialChars.invoke(service, allNum));
+		assertFalse((boolean)specialChars.invoke(service, mixAlphaNum));
+		assertTrue ((boolean)specialChars.invoke(service, spaces));
+		assertTrue ((boolean)specialChars.invoke(service, mixSpecial));
+		assertTrue ((boolean)specialChars.invoke(service, testTest));
+	}
 }

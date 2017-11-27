@@ -90,12 +90,13 @@ public class UsersDaoJdbcTest {
 		assertEquals(user, retrievedUser);
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Test
 	public void getStoredHashAndSaltTest() throws Exception {
-		Method getStoredHashAndSaltMethod = dao.getClass().getDeclaredMethod("getStoredHashAndSalt", User.class, Connection.class);
+		Method getStoredHashAndSaltMethod = dao.getClass().getDeclaredMethod("getStoredHashAndSalt", String.class, Connection.class);
 		getStoredHashAndSaltMethod.setAccessible(true);
 		
-		Map<String, String> map = (Map<String, String>) getStoredHashAndSaltMethod.invoke(dao, user, conn);
+		Map<String, String> map = (Map<String, String>) getStoredHashAndSaltMethod.invoke(dao, user.getUsername(), conn);
 		
 		String retrievedHash = map.get("hash");
 		String retrievedSalt = map.get("salt");
@@ -160,11 +161,12 @@ public class UsersDaoJdbcTest {
 		updatePasshash.invoke(dao, user, newHash, newSalt, conn);
 		
 		//Get access to method for retrieving pass/hash from database
-		Method getStoredHashAndSaltMethod = dao.getClass().getDeclaredMethod("getStoredHashAndSalt", User.class, Connection.class);
+		Method getStoredHashAndSaltMethod = dao.getClass().getDeclaredMethod("getStoredHashAndSalt", String.class, Connection.class);
 		getStoredHashAndSaltMethod.setAccessible(true);
 		
 		//Get data
-		Map<String, String> map = (Map<String, String>) getStoredHashAndSaltMethod.invoke(dao, user, conn);
+		@SuppressWarnings("unchecked")
+		Map<String, String> map = (Map<String, String>) getStoredHashAndSaltMethod.invoke(dao, user.getUsername(), conn);
 		
 		//Get returned data
 		String retrievedHash = map.get("hash");

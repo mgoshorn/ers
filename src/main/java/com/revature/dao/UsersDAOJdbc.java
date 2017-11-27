@@ -171,9 +171,14 @@ public class UsersDAOJdbc implements UsersDAO {
 	
 
 	@Override
-	public Integer create(User user, String hash, String salt) throws SQLException {
-		Connection conn = ConnectionUtil.getConnection();
-		return create(user, hash, salt, conn);
+	public Integer create(User user, String hash, String salt) {
+		try(Connection conn = ConnectionUtil.getConnection()) {
+			return create(user, hash, salt, conn);
+		} catch(SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+		
 	}
 	
 

@@ -1,6 +1,11 @@
 package com.revature.beans;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 public class User {
+	@JsonIgnore
 	private Integer id;
 	private String username;
 	private String firstName;
@@ -118,5 +123,9 @@ public class User {
 		this.role = role;
 	}
 	
+	public String toJSON() throws JsonProcessingException {
+		ObjectMapper objectMapper = new ObjectMapper();
+		return objectMapper.writeValueAsString(this);
+	}
 	
 }

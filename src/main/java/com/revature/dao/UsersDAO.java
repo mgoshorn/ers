@@ -73,7 +73,7 @@ public interface UsersDAO {
 	 * @return generated id
 	 * @throws SQLException
 	 */
-	public Integer create(User user, String hash, String salt) throws SQLException;
+	public Integer create(User user, String hash, String salt);
 	
 	/**
 	 * Creates a new user in the database given a user object, hash, and salt

@@ -1,7 +1,6 @@
 package com.revature.services;
 
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Map;
@@ -13,9 +12,11 @@ import java.util.regex.Pattern;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.log4j.Logger;
 
+import com.revature.beans.Role;
 import com.revature.beans.User;
 import com.revature.dao.UsersDAO;
 import com.revature.dao.UsersDAOJdbc;
+import com.revature.input.objects.Credentials;
 
 public class UserService {
 	
@@ -72,6 +73,29 @@ public class UserService {
 		return dao.updatePasshash(user, newHash, salt);
 	}
 	
+	public User createNewUser(String username, String firstName, String lastName, String password, String email) {
+		User user = new User();
+		user.setUsername(username);
+		user.setFirstName(firstName);
+		user.setLastName(lastName);
+		user.setEmail(email);
+		user.setRole(Role.EMPLOYEE);
+		
+		String salt = generateSalt();
+		String hash = hash(password, salt);
+		
+		if(!validate(password, hash, null)) {
+			return null;
+		}
+		
+		Integer id = dao.create(user, hash, salt);
+		if(id == null) return null;
+		
+		user.setId(id);
+		
+		return user;
+	}
+	
 	/**
 	 * Validates that a password meets all restrictions
 	 * Helper method to {@link #updatePassword(User, String)}
@@ -96,7 +120,7 @@ public class UserService {
 			return false;
 		}
 		
-		if(hashesMatch(newHash, oldHash)) {
+		if(oldHash != null && hashesMatch(newHash, oldHash)) {
 			log.info("new password failed not same password req");
 			return false;
 		}
@@ -156,7 +180,7 @@ public class UserService {
 		//Return true if requirement is disabled
 		if(!PASSWORD_REQUIRES_SPECIAL_CHAR) return true;		
 		
-		Pattern pattern = Pattern.compile("[^a-z0-9 ]", Pattern.CASE_INSENSITIVE);
+		Pattern pattern = Pattern.compile("[^a-zA-z1-9]", Pattern.CASE_INSENSITIVE);
 		Matcher matcher = pattern.matcher(password);
 		return matcher.find();
 	}
@@ -195,9 +219,25 @@ public class UserService {
 //	}
 	
 	public boolean authenticate(String username, String password) {
-		Map<String, String> hashSalt = dao.getStoredHashAndSalt(username);
-		String inputHash = hash(password, hashSalt.get("salt"));
-		return hashSalt.get("hash").equals(inputHash);
+		try {
+			Map<String, String> hashSalt = dao.getStoredHashAndSalt(username);
+			String inputHash = hash(password, hashSalt.get("salt"));
+			return hashSalt.get("hash").equals(inputHash);
+		} catch(NullPointerException e) {
+			return false;
+		}
+		
+	}
+	
+	public boolean authenticate(Credentials credentials) {
+		try {
+			Map<String, String> hashSalt = dao.getStoredHashAndSalt(credentials.getUsername());
+			String inputHash = hash(credentials.getPassword(), hashSalt.get("salt"));
+			return hashSalt.get("hash").equals(inputHash);
+		} catch(NullPointerException e) {
+			return false;
+		}
+		
 	}
 	
 	/**
@@ -208,6 +248,13 @@ public class UserService {
 	private String hash(String password, String salt) {
 		String fullHashable = password + salt;
 		return DigestUtils.sha256Hex(fullHashable); 
+	}
+
+	public User getUserByCredentials(Credentials credentials) {
+		if(authenticate(credentials)) {
+			return dao.getUserByUsername(credentials.getUsername());
+		}
+		return null;
 	}
 	
 }

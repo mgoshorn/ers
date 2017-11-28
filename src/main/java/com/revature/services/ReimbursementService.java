@@ -25,6 +25,8 @@ public class ReimbursementService {
 	
 	public List<Reimbursement> getAllPending(Credentials credentials) throws ErsHTTPException {
 		UserService userService = new UserService();		
+		
+		//Authenticate user
 		User user = userService.getUserByCredentials(credentials);
 		
 		if(user == null) {
@@ -32,6 +34,7 @@ public class ReimbursementService {
 			throw new AuthenticationException();
 		}
 		
+		//Are finance manager
 		if(user.getRole() != Role.FINANCE_MANAGER) {
 			throw new ForbiddenException();
 		}

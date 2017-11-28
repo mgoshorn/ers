@@ -2,7 +2,6 @@ package com.revature.beans;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-
 import com.revature.input.objects.ReimbursementRequest;
 
 public class Reimbursement {
@@ -13,6 +12,7 @@ public class Reimbursement {
 	private String description;
 	private User author;
 	private User resolver;
+	private String receipt;
 	private ReimbursementStatus status;
 	private ReimbursementType type;
 	
@@ -75,6 +75,13 @@ public class Reimbursement {
 	public void setAmount(BigDecimal amount) {
 		this.amount = amount;
 	}
+	public String getReceipt() {
+		return receipt;
+	}
+	public void setReceipt(String receipt) {
+		this.receipt = receipt;
+	}
+
 	public Reimbursement(BigDecimal amount, Integer id, LocalDateTime submitted, LocalDateTime resolved, String description, User author,
 			User resolver, ReimbursementStatus status, ReimbursementType type) {
 		super();
@@ -94,13 +101,21 @@ public class Reimbursement {
 	}
 	
 	public Reimbursement(User user, ReimbursementRequest reimbRequest) {
-		Reimbursement reimbursement = new Reimbursement();
-		reimbursement.setAmount(reimbRequest.getAmount());
-		reimbursement.setAuthor(user);
-		reimbursement.setDescription(reimbRequest.getDescription());
-		reimbursement.setStatus(ReimbursementStatus.PENDING);
-		reimbursement.setSubmitted(LocalDateTime.now());
-		reimbursement.setType(ReimbursementType.valueOf(reimbRequest.getType().toUpperCase()));
+		this.setAmount(reimbRequest.getAmount());
+		this.setAuthor(user);
+		this.setDescription(reimbRequest.getDescription());
+		this.setStatus(ReimbursementStatus.PENDING);
+		this.setSubmitted(LocalDateTime.now());
+		this.setType(ReimbursementType.valueOf(reimbRequest.getType().toUpperCase()));
+		this.receipt = reimbRequest.getReceipt();
 	}
+	@Override
+	public String toString() {
+		return "Reimbursement [amount=" + amount + ", id=" + id + ", submitted=" + submitted + ", resolved=" + resolved
+				+ ", description=" + description + ", author=" + author + ", resolver=" + resolver + ", status="
+				+ status + ", type=" + type + "]";
+	}
+
+	
 	
 }

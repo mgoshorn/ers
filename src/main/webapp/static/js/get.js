@@ -43,7 +43,7 @@ let post = function (url, data) {
           // Resolve the promise with the response text
           resolve(req.response);
         } else if(req.status == 303) {
-            resolve(req.response);
+          resolve(req.response);
         }
         else {
           // Otherwise reject with the status text
@@ -59,6 +59,8 @@ let post = function (url, data) {
   
       // Make the request
       if(data !== undefined) {
+        console.log("Sending data...");
+        console.log(data);
         req.send(data);
       } else {
         req.send();

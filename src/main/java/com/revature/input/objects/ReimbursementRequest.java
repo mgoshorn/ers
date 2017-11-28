@@ -7,14 +7,14 @@ public class ReimbursementRequest {
 	private BigDecimal amount;
 	private String type;
 	private String description;
-	private Blob receipt;
+	private String receipt;
 	
 	public ReimbursementRequest() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	
-	public ReimbursementRequest(BigDecimal amount, String type, String description, Blob receipt) {
+	public ReimbursementRequest(BigDecimal amount, String type, String description, String receipt) {
 		super();
 		this.amount = amount;
 		this.type = type;
@@ -95,11 +95,11 @@ public class ReimbursementRequest {
 		this.description = description;
 	}
 	
-	public Blob getReceipt() {
+	public String getReceipt() {
 		return receipt;
 	}
 	
-	public void setReceipt(Blob receipt) {
+	public void setReceipt(String receipt) {
 		this.receipt = receipt;
 	}
 	

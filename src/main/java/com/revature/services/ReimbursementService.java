@@ -114,5 +114,24 @@ public class ReimbursementService {
 		//Save reimbursement to database
 		dao.save(reimbursement);
 	}
+
+
+	public byte[] getReceipt(Credentials credentials, Integer id) {
+		//Authenticate user
+		UserService us = new UserService();
+		User user = us.getUserByCredentials(credentials);
+		
+		if(user == null) {
+			throw new ForbiddenException();
+		}
+		
+		//if a user is an employee and not the uploader, then deny access to file
+		Reimbursement reimbursement = dao.getReimbursementByID(id);
+		if(user.getRole() == Role.EMPLOYEE && user.getId() != reimbursement.getAuthor().getId() ) {
+			throw new ForbiddenException();
+		}
+		
+		return dao.getReceipt(reimbursement);		
+	}
 	
 }

@@ -5,7 +5,6 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.apache.catalina.servlets.DefaultServlet;
 import org.apache.log4j.Logger;
@@ -74,6 +73,7 @@ public class FrontController extends DefaultServlet {
 			
 			
 		} catch(ErsHTTPException e) {
+			e.printStackTrace();
 			log.trace("HttpException: " + e.getStatusCode() + " - Forwarding to: " + e.getLocation());
 			response.setStatus(e.getStatusCode());
 			request.getRequestDispatcher(e.getLocation()).forward(request, response);

@@ -39,9 +39,8 @@ public class UserController {
 			case UPDATE_PASSWORD:
 			case UPDATE_EMAIL:
 			default:
-				throw new ResourceNotFoundException();
+			throw new ResourceNotFoundException();
 		}
-		
 	}
 
 	public void delegatePost(HttpServletRequest request, HttpServletResponse response) throws IOException {

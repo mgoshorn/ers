@@ -1,6 +1,5 @@
 package com.revature.dao;
 
-import java.sql.SQLException;
 import java.util.List;
 
 import com.revature.beans.Reimbursement;
@@ -18,4 +17,6 @@ public interface ReimbursementDAO {
 	List<Reimbursement> getPendingRequests(int userID);
 
 	List<Reimbursement> getPendingRequestsByResolverID(int userID);
+
+	public byte[] getReceipt(Reimbursement reimbursement);
 }

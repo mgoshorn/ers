@@ -1,6 +1,7 @@
 package com.revature.controllers;
 
 import java.io.IOException;
+import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.util.List;
 
@@ -29,8 +30,8 @@ public class ReimbursementController {
 		log.debug("Get request delegated to reimbursement controller");
 		String actualURL = request.getRequestURI().substring(request.getContextPath().length() + "/reimbursement".length());
 		
-		
 		ReimbursementRoute route = ReimbursementRoute.getDelegate(actualURL);
+		log.trace("Route: " + route.name());
 		Credentials credentials = getCredentials(request);
 		if(credentials == null) throw new ForbiddenException();
 		try {
@@ -41,6 +42,10 @@ public class ReimbursementController {
 					
 				case HISTORY:
 					handleHistoryRequest(request, response, credentials);			
+					break;
+					
+				case RECEIPT:
+					handleGetReceipt(request, response, actualURL, credentials);
 					break;
 					
 				case RESOURCE_NOT_FOUND:
@@ -56,7 +61,7 @@ public class ReimbursementController {
 			
 		}
 		
-		throw new ResourceNotFoundException();
+		//throw new ResourceNotFoundException();
 		
 	}
 
@@ -110,6 +115,10 @@ public class ReimbursementController {
 				handleResolveStatus(request, response, actualURL, credentials, true);				
 				break;
 				
+			case RECEIPT:
+				handleGetReceipt(request, response, actualURL, credentials);
+				break;
+				
 			case RESOURCE_NOT_FOUND:
 				throw new ResourceNotFoundException();
 			}
@@ -118,6 +127,36 @@ public class ReimbursementController {
 			log.error(e.toString());
 			
 		}		
+	}
+
+	private void handleGetReceipt(HttpServletRequest request, HttpServletResponse response, String actualURL,
+			Credentials credentials) {
+		
+		//Get receipt index from url
+		if(actualURL.charAt(actualURL.length() - 1) == '/') actualURL = actualURL.substring(0, actualURL.length() - 1);
+		int idIndex = actualURL.lastIndexOf('/');
+		Integer id = null;
+
+		log.trace("Supposed id: " + actualURL.substring(idIndex+1));
+		
+		//Try to cast value to integer
+		try {
+			id = Integer.valueOf(actualURL.substring(idIndex+1));
+		} catch(NumberFormatException e) {
+			//if it can't be cast, then the url is malformed, throw 404
+			throw new ResourceNotFoundException();
+		}
+		
+		byte[] bytes = service.getReceipt(credentials, id);
+		response.setContentType("jpeg");
+		response.setHeader("Content-Disposition", "filename=receipt_" + id + ".jpeg");
+		response.setContentLength(bytes.length);
+
+		try(OutputStream os = response.getOutputStream()) {
+		   os.write(bytes , 0, bytes.length);
+		} catch (IOException e) {
+		   e.printStackTrace();
+		}
 	}
 
 	private void handleResolveStatus(HttpServletRequest request, HttpServletResponse response, String url,  Credentials credentials,
@@ -133,11 +172,15 @@ public class ReimbursementController {
 	}
 	
 	private void handleCreateRequest(HttpServletRequest request, HttpServletResponse response,
-			Credentials credentials) {
-		//TODO
+			Credentials credentials) throws IOException {
 		
 		ReimbursementRequest reimbRequest;
-		//TODO Get ReimbursementRequest from input JSON
+		String json = request.getReader().lines().reduce( (acc, cur) -> acc+cur).get();
+		log.trace("json received = " + json);
+		ObjectMapper om = new ObjectMapper();
+		reimbRequest = om.readValue(json, ReimbursementRequest.class);
+
+		
 		service.createRequest(credentials, reimbRequest);
 		
 		

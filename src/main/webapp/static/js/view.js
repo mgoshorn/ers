@@ -5,7 +5,6 @@ view = {
     directoryView: document.getElementById('directory'),
 
     swapView: function(curView, nextView) {
-
         curView.addEventListener("transitionend", (e) => {
             curView.classList.add("hidden");
             nextView.classList.remove("hidden");

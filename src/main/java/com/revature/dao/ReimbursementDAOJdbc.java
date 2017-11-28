@@ -1,5 +1,7 @@
 package com.revature.dao;
 
+import java.io.IOException;
+import java.io.OutputStream;
 import java.math.BigDecimal;
 import java.sql.Blob;
 import java.sql.Connection;
@@ -7,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.sql.Types;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -70,26 +73,42 @@ public class ReimbursementDAOJdbc extends AbstractReimbursementDAO {
 	private boolean savenew(Reimbursement reimbursement) {
 		String query = "INSERT INTO reimbursements (reimb_amount, "
 				+ "reimb_submitted, reimb_resolved, reimb_description, "
-				+ "reimb_author, reimb_resolver, reimb_status_id, reimb_type_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
+				+ "reimb_author, reimb_resolver, reimb_status_id, reimb_type_id, reimb_receipt) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 		
 		try(Connection conn = ConnectionUtil.getConnection()) {
 			PreparedStatement preparedStatement = conn.prepareStatement(query);
 			
+			log.trace(reimbursement);
+			Timestamp resolvedTs = reimbursement.getResolved() == null ? null : Timestamp.valueOf(reimbursement.getResolved());
+			boolean resolverIdIsNull = reimbursement.getResolver() == null;
+			Blob receipt = conn.createBlob();
+			OutputStream blobWriter = receipt.setBinaryStream(1);
+			blobWriter.write(reimbursement.getReceipt().getBytes());
+			
 			preparedStatement.setBigDecimal(1, reimbursement.getAmount());
 			preparedStatement.setTimestamp(2, Timestamp.valueOf(reimbursement.getSubmitted()));
-			preparedStatement.setTimestamp(3, Timestamp.valueOf(reimbursement.getResolved()));
+			preparedStatement.setTimestamp(3, resolvedTs);
 			preparedStatement.setString(4, reimbursement.getDescription());
 			preparedStatement.setInt(5, reimbursement.getAuthor().getId());
-			preparedStatement.setInt(6, reimbursement.getResolver().getId());
+			if(resolverIdIsNull) {
+				preparedStatement.setNull(6, Types.INTEGER);
+			} else {
+				preparedStatement.setInt(6, reimbursement.getResolver().getId());
+			}
 			preparedStatement.setInt(7, reimbursement.getStatus().getValue());
 			preparedStatement.setInt(8, reimbursement.getType().getValue());
+			
+			preparedStatement.setBlob(9, receipt);
 			preparedStatement.execute();
 			
 			return true;
 		} catch(SQLException e) {
 			e.printStackTrace();
 			log.error("Reimbursement insert failed. " + e.toString());
+			return false;
+		} catch(IOException e) {
+			e.printStackTrace();
 			return false;
 		}
 		
@@ -278,6 +297,26 @@ public class ReimbursementDAOJdbc extends AbstractReimbursementDAO {
 		} catch(SQLException e) {
 			log.error("Error getting resolver's resolved requests");
 			return null;
+		}
+	}
+
+	@Override
+	public byte[] getReceipt(Reimbursement reimbursement) {
+		String query = "SELECT reimb_receipt FROM reimbursements WHERE reimb_id = ?";
+		
+		try(Connection conn = ConnectionUtil.getConnection()) {
+			PreparedStatement preparedStatement = conn.prepareStatement(query);
+			preparedStatement.setInt(1, reimbursement.getId());
+			ResultSet resultSet = preparedStatement.executeQuery();
+			byte[] bytes = {};
+			if(resultSet.next()) {
+				Blob imgBlob = resultSet.getBlob("REIMB_RECEIPT");
+				bytes = imgBlob.getBytes(1, (int)imgBlob.length());
+			}
+			return bytes;
+		} catch(SQLException e) {
+			e.printStackTrace();
+			return new byte[]{};
 		}
 	}
 }

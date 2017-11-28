@@ -23,23 +23,23 @@ let login = function() {
 
     // })
 
-    let loginPromise = function() {
-        message = createBody();
-        console.log(message);
-        post('../user/login', message).then(function(data) {
-            user.setup(JSON.parse(data))
-            console.log(data);
-            return post('../reimbursement');
-        }).then(function(data) {
-            console.log("Second then!");
-            console.log(data);
-            user.reimbursements.setup(data);
-            login.transitionOut();
-        }).catch(function(error) {
-            console.log(error);  
-        });
+    // let loginPromise = function() {
+    //     message = createBody();
+    //     console.log(message);
+    //     post('../user/login', message).then(function(data) {
+    //         user.setup(JSON.parse(data))
+    //         console.log(data);
+    //         return post('../reimbursement');
+    //     }).then(function(data) {
+    //         console.log("Second then!");
+    //         console.log(data);
+    //         user.reimbursements.setup(data);
+    //         login.transitionOut();
+    //     }).catch(function(error) {
+    //         console.log(error);  
+    //     });
         
-    }
+    // }
 
     let pLogin = function() {
         view.showLoading();

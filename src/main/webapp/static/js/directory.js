@@ -5,25 +5,19 @@ directory = {
     
     toRequestHistory: () => {
         console.log("Going to history");
+        hideCreate();
         view.swapView(view.directoryView, view.expenseView);
     },
 
     toCreateRequest: () => {
-
+        console.log("Going to create request");
+        showCreate();
+        view.swapView(view.directoryView, view.expenseView);
     },
 
     toAuditRequests: () => {
         if(user.status == "EMPLOYEE") return;
 
 
-    },
-
-    fetchRequestHistory: () => {
-        let request = new XMLHttpRequest();
-
-        on 
-
-                
     }
-
 }

@@ -145,6 +145,13 @@ public class ReimbursementController {
 		}		
 	}
 
+	/**
+	 * Handles requests for receipt images
+	 * @param request - http request
+	 * @param response - http response
+	 * @param actualURL - relevant URI data
+	 * @param credentials - User credentials
+	 */
 	private void handleGetReceipt(HttpServletRequest request, HttpServletResponse response, String actualURL,
 			Credentials credentials) {
 		

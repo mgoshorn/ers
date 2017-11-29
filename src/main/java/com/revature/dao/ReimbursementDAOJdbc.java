@@ -116,7 +116,9 @@ public class ReimbursementDAOJdbc extends AbstractReimbursementDAO {
 
 	@Override
 	public List<Reimbursement> getReimbursementsByUser(User user){
-		String query = "SELECT * FROM reimbursements WHERE reimb_author = ?";
+		String query = "SELECT REIMB_ID, REIMB_AMOUNT, REIMB_SUBMITTED, REIMB_RESOLVED, "
+				+ "REIMB_DESCRIPTION, REIMB_AUTHOR, REIMB_RESOLVER, REIMB_STATUS_ID, REIMB_TYPE_ID "
+				+ "FROM reimbursements WHERE reimb_author = ?";
 		List<Reimbursement> list = new ArrayList<>();
 		
 		try(Connection conn = ConnectionUtil.getConnection()) {

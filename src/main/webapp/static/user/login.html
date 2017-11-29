@@ -34,7 +34,7 @@
         </div>
     </div>
 
-    <div id='directory' class='view hidden invis'>
+    <div id="directory" class="view hidden invis">
         <h1>Choose an option below</h1>
         <div id="directory-container">
             <div id="request-history" class="directory-button" onclick="directory.toRequestHistory()">
@@ -45,7 +45,7 @@
                 <div class="request-icon">✎</div>
                 <div class="request-desc">Create Request</div>
             </div>
-            <div id="audit-request" class="directory-button hidden">
+            <div id="audit-request" class="directory-button hidden" onclick="directory.toAuditRequests()">
                 <div class="request-icon">✔</div>
                 <div class="request-desc">Audit Requests</div>
             </div>
@@ -63,6 +63,69 @@
             </div>
         </div>
     </div>
+
+    <div id="audit-view" class="view hidden invis">
+        <table class="table" id="audit-table">
+            <thead>
+                <tr>
+                    <td class="amount">AMOUNT</td>
+                    <td class="requester">REQUESTER</td>
+                    <td class="date">REQUESTED</td>
+                    <td class="type">TYPE</td>
+                    <td class="receipt-link">RECEIPT</td>
+                    <td class="audit-action">ACTION</td>
+                </tr>
+            </thead>
+            <tbody id="expense-table-body">
+                <tr class="resolved">
+                    <td class="amount" data-id="1">$150.00</td>
+                    <td class="requester">Testing tester</td>
+                    <td class="date">2017-08-28</td>
+                    <td class="type">LODGING</td>
+                    <td class="receipt-link"><a href="../reimbursement/receipt_1">receipt</a></td>
+                    <td class="audit-action">
+                        <button class="btn btn-success" disabled>Approve</button>
+                        <button class="btn btn-warning" disabled>Deny</button>
+                    </td>
+                </tr>
+                <tr class="resolved">
+                    <td>DESCRIPTION</td>
+                    <td class="description">A generic reimbursement request</td>                
+                </tr>
+                <tr>
+                    <td class="amount" data-id="1">$150.00</td>
+                    <td class="requester">Testing tester</td>
+                    <td class="date">2017-08-28</td>
+                    <td class="type">LODGING</td>
+                    <td class="receipt-link"><a href="../reimbursement/receipt_1">receipt</a></td>
+                    <td class="audit-action">
+                        <button class="btn btn-success">Approve</button>
+                        <button class="btn btn-warning">Deny</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>DESCRIPTION</td>
+                    <td class="description">A generic reimbursement request</td>                
+                </tr><tr>
+                    <td class="amount" data-id="1">$150.00</td>
+                    <td class="requester">Testing tester</td>
+                    <td class="date">2017-08-28</td>
+                    <td class="type">LODGING</td>
+                    <td class="receipt-link"><a href="../reimbursement/receipt_1">receipt</a></td>
+                    <td class="audit-action">
+                        <button class="btn btn-success">Approve</button>
+                        <button class="btn btn-warning">Deny</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>DESCRIPTION</td>
+                    <td class="description">A generic reimbursement request</td>                
+                </tr>
+            </tbody>
+            
+        </table>
+    </div>
+
 
     <div id="expense-view" class="view hidden invis">
         
@@ -101,38 +164,6 @@
                     
             </form>
         </div>
-
-        <!-- <div id='new-request' class='window-view'>
-            <form>
-                <div class="form-row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="amount">Reimbursement Amount:</label>
-                            <input type="number" class="form-control" id="amount">
-                        </div>
-                        <div class="form-group">
-                            <label for="type">Reimbursement Category:</label>
-                            <select class="form-control" id="type">
-                                <option value="lodging">Lodging</option>
-                                <option value="travel">Travel</option>
-                                <option value="food">Food</option>
-                                <option value="other">Other</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="description">Enter description of the expense:</label>
-                        <textarea class="form-control" placeholder="description"></textarea>
-                    </div>
-                </div>
-                 <div class="form-row">
-                    <div class="form-group col-md-12">
-                        <button type="button" class="btn btn-default" id='expense-create-submit'>Submit</button>
-                    </div>    
-                 </div>
-                 
-            </form>
-        </div> -->
         
         <table class="table" id="reimbursement-table">
             <thead id="reimbursement-table-head">
@@ -164,6 +195,7 @@
     <script src="/ers/static/js/get.js"></script>
     <script src="/ers/static/js/directory.js"></script>
     <script src="/ers/static/js/expense-view.js"></script>
+    <script src="/ers/static/js/audit.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>

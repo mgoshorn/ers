@@ -344,4 +344,80 @@ body {
 .form-row > .form-group.col-md-12 {
   text-align: center; }
 
+#audit-table {
+  width: 80%;
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-top: 3%;
+  min-height: 0%;
+  border-collapse: collapse; }
+  #audit-table tr {
+    border-left: 1px solid #DDD;
+    border-right: 1px solid #DDD; }
+  #audit-table td:not(:last-of-type) {
+    border-right: 1px solid #DDD; }
+  #audit-table * {
+    padding: 5px; }
+  #audit-table .amount {
+    text-align: right;
+    width: 15%; }
+  #audit-table .requester {
+    width: 20%; }
+  #audit-table .date {
+    width: 18%; }
+  #audit-table .type {
+    width: 15%;
+    text-align: center; }
+  #audit-table tr:nth-child(4n+4), #audit-table tr:nth-child(4n+3) {
+    background: #EEE; }
+  #audit-table tr:nth-child(2n) {
+    margin-bottom: 10px;
+    border-bottom: 1px solid #DDD; }
+  #audit-table td {
+    border-top: none !important; }
+  #audit-table tr {
+    border-bottom: 1px solid #DDD; }
+  #audit-table tr:nth-child(2n+1) {
+    border-top: 1px solid #DDD; }
+  #audit-table .description {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-height: 100%; }
+  #audit-table .audit-action {
+    width: 25%; }
+  #audit-table button {
+    width: 40%;
+    margin: 2%;
+    font-size: 80%; }
+  #audit-table tr.resolved {
+    opacity: 0.25; }
+  #audit-table thead {
+    text-align: center; }
+
+#audit-table thead {
+  border-bottom: solid 1px black; }
+
+#audit-table-title {
+  padding: 5px; }
+  #audit-table-title h3 {
+    text-align: center;
+    padding: 0;
+    margin: 0; }
+
+#audit-table-head > * {
+  font-weight: bold;
+  text-align: center; }
+
+.audit-table-item, #audit-table tr {
+  display: flex;
+  flex-direction: row; }
+  .audit-table-item .amount, #audit-table tr .amount {
+    flex-grow: 0;
+    min-width: 10%; }
+  .audit-table-item .date, #audit-table tr .date {
+    flex-grow: 0;
+    width: 15%; }
+  .audit-table-item .description, #audit-table tr .description {
+    flex-grow: 5; }
+
 /*# sourceMappingURL=ers.css.map */

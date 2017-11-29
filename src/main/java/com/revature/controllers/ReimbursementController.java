@@ -96,7 +96,7 @@ public class ReimbursementController {
 		try {
 			switch(route) {
 			case PENDING:
-				//TODO get pending data
+				handleGetPending(request, response, credentials);
 				break;
 				
 			case CREATE:

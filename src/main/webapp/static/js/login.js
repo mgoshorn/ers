@@ -50,7 +50,6 @@ let login = function() {
             userSetup(JSON.parse(data))
             return post('../reimbursement', undefined);
         }).then(function(data) {
-            //console.log(data);
             reimbursementsSetup(data);
             userbar.update();
             view.directory.update();

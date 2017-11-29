@@ -3,6 +3,7 @@ view = {
     loginView: document.getElementById('login'),
     expenseView: document.getElementById('expense-view'),
     directoryView: document.getElementById('directory'),
+    auditView: document.getElementById('audit-view'),
 
     swapView: function(curView, nextView) {
         curView.addEventListener("transitionend", (e) => {
@@ -82,8 +83,7 @@ view = {
             
             for(i in user.reimbursements) {
                 let reimb = user.reimbursements[i];
-                console.log("Iteration");
-                console.log(reimb);
+                
                 let rowE = newBody.insertRow(-1);
                 
                 let amountE = rowE.insertCell(-1);

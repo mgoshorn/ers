@@ -508,6 +508,7 @@ body {
 
     tr {
         border-bottom: 1px solid #DDD;
+        transition: opacity 500ms linear, margin 500ms ease-out;
     }
     tr:nth-child(2n+1) {
         border-top: 1px solid #DDD;

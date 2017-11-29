@@ -35,7 +35,7 @@ public class ReimbursementDAOJdbc extends AbstractReimbursementDAO {
 	}
 	
 	private boolean update(Reimbursement reimbursement){
-		String query = "UPDATE reimbursements SET"
+		String query = "UPDATE reimbursements SET "
 				+ "reimb_amount = ?, "
 				+ "reimb_submitted = ?, "
 				+ "reimb_resolved = ?, "
@@ -44,7 +44,7 @@ public class ReimbursementDAOJdbc extends AbstractReimbursementDAO {
 				+ "reimb_resolver = ?, "
 				+ "reimb_status_id = ?, "
 				+ "reimb_type_id = ? "
-				+ "WHERE id = ?";
+				+ "WHERE reimb_id = ?";
 		
 		try(Connection conn = ConnectionUtil.getConnection()) {
 			PreparedStatement preparedStatement = conn.prepareStatement(query);

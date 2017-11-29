@@ -1,5 +1,6 @@
 package com.revature.services;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -57,6 +58,7 @@ public class ReimbursementService {
 	public boolean resolveStatus(Credentials credentials, int id, boolean approved) {
 		
 		ReimbursementStatus resolution = approved ? ReimbursementStatus.APPROVED : ReimbursementStatus.DENIED;
+		log.trace("Request resolution for reimbursement " + id + " as " + resolution.name());
 		
 		//Authenticate
 		UserService userService = new UserService();	
@@ -95,8 +97,11 @@ public class ReimbursementService {
 				
 		//Update status
 		reimbursement.setStatus(resolution);
+		reimbursement.setResolved(LocalDateTime.now());
+		reimbursement.setResolver(user);
 		boolean result = dao.save(reimbursement);
 		
+		log.trace("Request resolved.");
 		//TODO e-mail request author alerting them of resolution
 		
 		return result;

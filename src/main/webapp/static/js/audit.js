@@ -58,11 +58,12 @@ audit = {
                 approveE.classList.add('btn');
                 approveE.classList.add('btn-success');
                 approveE.innerText = 'Approve';
-                approveE.setAttribute('onclick', 'console.log("Test")');
+                approveE.setAttribute('onclick', `audit.approve(this, ${req.id})`);
 
                 denyE.classList.add('btn');
                 denyE.classList.add('btn-warning');
                 denyE.innerText = 'Deny';
+                denyE.setAttribute('onclick', `audit.deny(this, ${req.id})`);
 
                 //append buttons
                 auditE.appendChild(approveE);
@@ -94,10 +95,27 @@ audit = {
 
             console.log('Building complete!');
             resolve();
-
+        });       
+        
+    },
+    approve: function(caller, id) {
+        caller.parentNode.parentNode.classList.add('resolved');
+        caller.parentNode.parentNode.nextSibling.classList.add('resolved');
+        
+        post('../reimbursement/approve/' + id).then(function() {
+            caller.parentNode.parentNode.classList.add('out');
+            caller.parentNode.parentNode.classList.add('out');
         });
+    },
+
+    deny: function(caller, id) {
+        caller.parentNode.parentNode.classList.add('resolved');
+        caller.parentNode.parentNode.nextSibling.classList.add('resolved');
         
-        
+        post('../reimbursement/deny/' + id).then(function() {
+            caller.parentNode.parentNode.classList.add('out');
+            caller.parentNode.parentNode.classList.add('out');
+        });
     }
 
 

@@ -376,7 +376,8 @@ body {
   #audit-table td {
     border-top: none !important; }
   #audit-table tr {
-    border-bottom: 1px solid #DDD; }
+    border-bottom: 1px solid #DDD;
+    transition: opacity 500ms linear, margin 500ms ease-out; }
   #audit-table tr:nth-child(2n+1) {
     border-top: 1px solid #DDD; }
   #audit-table .description {

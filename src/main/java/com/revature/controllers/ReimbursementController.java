@@ -95,6 +95,11 @@ public class ReimbursementController {
 		
 	}
 
+	/**
+	 * Delegate for post Reimbursement post requests
+	 * @param request 
+	 * @param response
+	 */
 	public void delegatePost(HttpServletRequest request, HttpServletResponse response) {
 		log.debug("Get request delegated to reimbursement controller");
 		String actualURL = request.getRequestURI().substring(request.getContextPath().length() + "/reimbursement".length());

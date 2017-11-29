@@ -82,7 +82,11 @@ public class ReimbursementController {
 		return;
 	}
 
-	
+	/**
+	 * Gets Credentials from user request. 
+	 * @param request - HTTP request
+	 * @return Credentials of user or null if session does not contain credentials
+	 */
 	private Credentials getCredentials(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		if(session == null) return null;

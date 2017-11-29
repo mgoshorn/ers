@@ -65,6 +65,13 @@ public class ReimbursementController {
 		
 	}
 
+	/**
+	 * Handles requests for getting a users reimbursement request history
+	 * @param request - HTTP request
+	 * @param response - HTTP response
+	 * @param credentials - Authentication credentials from session
+	 * @throws IOException - On Jackson parse failure
+	 */
 	private void handleHistoryRequest(HttpServletRequest request, HttpServletResponse response, Credentials credentials) throws IOException {
 		List<Reimbursement> rList = service.getUserReimbursements(credentials);
 		ObjectMapper om = new ObjectMapper();

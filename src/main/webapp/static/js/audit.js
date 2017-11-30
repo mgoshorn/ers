@@ -69,22 +69,26 @@ audit = {
                 auditE.appendChild(approveE);
                 auditE.appendChild(denyE);
 
-
-                //append onclick
-                //TODO
-    
                 //create anchor
                 let receiptLinkE = document.createElement('a');
-                receiptLinkE.href = `../reimbursement/receipt_${req.id}`;
+                receiptLinkE.href = `../reimbursement/receipt/${req.id}`;
                 receiptLinkE.innerText = 'receipt';
                 receiptE.appendChild(receiptLinkE);
     
-                amountE.innerText = req.amount.toFixed(2);
+                amountE.innerText = '$' + req.amount.toFixed(2);
                 requesterE.innerText = req.author.firstName + ' ' + req.author.lastName;
                 d = req.submitted;
-                requestedE.innerText = d.dayOfWeek + ', ';
-                requestedE.innerText+= d.month + ' ' + d.dayOfMonth + ' ';
-                requestedE.innerText+= d.hour + ':' + d.minute + ':' + d.second + ' (' + d.year + ')';
+                let min = d.minute >= 10 ? d.minute : '0' + d.minute;
+                let hour = d.hour >= 10 ? d.hour : '0' + d.hour;
+                let second = d.second >= 10 ? d.second : '0' + d.second;
+
+                //More abbrievated date
+                requestedE.innerText = d.year + '-' + d.monthValue + '-' + d.dayOfMonth + ' ';
+                requestedE.innerText += min + ':' + hour + ':' + second;
+
+                // requestedE.innerText = d.dayOfWeek + ', ';
+                // requestedE.innerText+= d.month + ' ' + d.dayOfMonth + ' ';
+                // requestedE.innerText+= d.hour + ':' + d.minute + ':' + d.second + ' (' + d.year + ')';
                 //Monday, November 22 12:00:00 (2017) 
                 typeE.innerText = req.type;
                 titleE.innerText = 'DESCRIPTION:'
@@ -99,12 +103,25 @@ audit = {
         
     },
     approve: function(caller, id) {
-        caller.parentNode.parentNode.classList.add('resolved');
-        caller.parentNode.parentNode.nextSibling.classList.add('resolved');
+        detailsRowE = caller.parentNode.parentNode;
+        descRowE = caller.parentNode.parentNode.nextSibling;
+
+        detailsRowE.classList.add('resolved');
+        descRowE.classList.add('resolved');
         
-        post('../reimbursement/approve/' + id).then(function() {
-            caller.parentNode.parentNode.classList.add('out');
-            caller.parentNode.parentNode.classList.add('out');
+        // detailsRowE.addEventListener("transitionend", (e) => {
+        //     setTimeout(() => {
+        //         console.log("Removing rows");
+        //         table = detailsRowE.parentNode;
+        //         table.removeChild(detailsRowE);
+        //         table.removeChild(descRowE);
+        //     }, 100);         
+        // }, {});
+
+        post('../reimbursement/approve/' + id).then(() => {
+            console.log("Hiding rows");
+            detailsRowE.classList.add('out');
+            descRowE.classList.add('out');
         });
     },
 
@@ -113,8 +130,9 @@ audit = {
         caller.parentNode.parentNode.nextSibling.classList.add('resolved');
         
         post('../reimbursement/deny/' + id).then(function() {
-            caller.parentNode.parentNode.classList.add('out');
-            caller.parentNode.parentNode.classList.add('out');
+            console.log("Hiding rows");
+            detailsRowE.classList.add('out');
+            descRowE.classList.add('out');
         });
     }
 

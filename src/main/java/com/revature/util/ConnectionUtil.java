@@ -12,7 +12,7 @@ import org.apache.log4j.Logger;
 public class ConnectionUtil {
 	private static ConnectionUtil conUtil = new ConnectionUtil();
 	private static Logger log = Logger.getRootLogger();
-	
+	private static Properties prop;
 	static {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -33,11 +33,17 @@ public class ConnectionUtil {
 	
 	public static Connection getConnection() {
 		try {
-			
-			Properties prop = new Properties();
-			InputStream dbProps = ConnectionUtil.class.getClassLoader().getResourceAsStream("database.properties");
-			System.out.println(dbProps);
-			prop.load(dbProps);
+//			try {
+//				throw new Exception();
+//			} catch(Exception e) {
+//				e.printStackTrace();
+//			}
+			if(prop == null) {
+				prop = new Properties();
+				InputStream dbProps = ConnectionUtil.class.getClassLoader().getResourceAsStream("database.properties");
+				System.out.println(dbProps);
+				prop.load(dbProps);
+			}
 			return DriverManager.getConnection(prop.getProperty("url"), prop.getProperty("username"), prop.getProperty("password"));
 		} catch(SQLException e) {
 			e.printStackTrace();

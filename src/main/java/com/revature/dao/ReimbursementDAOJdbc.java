@@ -1,5 +1,7 @@
 package com.revature.dao;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.math.BigDecimal;
@@ -12,7 +14,9 @@ import java.sql.Timestamp;
 import java.sql.Types;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.log4j.Logger;
 
@@ -118,7 +122,7 @@ public class ReimbursementDAOJdbc extends AbstractReimbursementDAO {
 	public List<Reimbursement> getReimbursementsByUser(User user){
 		String query = "SELECT REIMB_ID, REIMB_AMOUNT, REIMB_SUBMITTED, REIMB_RESOLVED, "
 				+ "REIMB_DESCRIPTION, REIMB_AUTHOR, REIMB_RESOLVER, REIMB_STATUS_ID, REIMB_TYPE_ID "
-				+ "FROM reimbursements WHERE reimb_author = ?";
+				+ "FROM reimbursements WHERE reimb_author = ? ORDER BY reimb_submitted DESC";
 		List<Reimbursement> list = new ArrayList<>();
 		
 		try(Connection conn = ConnectionUtil.getConnection()) {
@@ -127,10 +131,11 @@ public class ReimbursementDAOJdbc extends AbstractReimbursementDAO {
 			
 			ResultSet results = preparedStatement.executeQuery();
 			
-			while(results.next()) {
-				Reimbursement reimbursement = extractReimbursement(results);
-				list.add(reimbursement);
-			}
+			list = extractReimbursements(results,conn);
+//			while(results.next()) {
+//				Reimbursement reimbursement = extractReimbursement(results, conn);
+//				list.add(reimbursement);
+//			}
 			
 			return list;
 		} catch(SQLException e) {
@@ -147,7 +152,7 @@ public class ReimbursementDAOJdbc extends AbstractReimbursementDAO {
 	 * @return
 	 * @throws SQLException
 	 */
-	private Reimbursement extractReimbursement(ResultSet results) throws SQLException {
+	private Reimbursement extractReimbursement(ResultSet results, Connection conn) throws SQLException {
 		UsersDAO dao = new UsersDAOJdbc();
 				
 		int id = results.getInt("REIMB_ID");
@@ -162,14 +167,55 @@ public class ReimbursementDAOJdbc extends AbstractReimbursementDAO {
 		String description = results.getString("REIMB_DESCRIPTION");
 		if(results.wasNull()) description = null;
 		//Blob receiptImage = results.getBlob("REIMB_RECEIPT");
-		User authorID = dao.getUserByID(results.getInt("REIMB_AUTHOR"));
-		User resolverID = dao.getUserByID(results.getInt("REIMB_RESOLVER"));
+		
+		
+		User authorID = dao.getUserByID(results.getInt("REIMB_AUTHOR"), conn);
+		User resolverID = dao.getUserByID(results.getInt("REIMB_RESOLVER"), conn);
+		
+		
 		if(results.wasNull()) resolverID = null;
 		ReimbursementStatus status = ReimbursementStatus.getByValue(results.getInt("REIMB_STATUS_ID"));
 		ReimbursementType type = ReimbursementType.getByValue(results.getInt("REIMB_TYPE_ID"));
 		
 		Reimbursement reimbursement = new Reimbursement(amount, id, submitDate, resolutionDate, description, authorID, resolverID, status, type);
 		return reimbursement;
+	}
+	
+	private List<Reimbursement> extractReimbursements(ResultSet results, Connection conn) throws SQLException {
+		UsersDAO dao = new UsersDAOJdbc();
+		Map<Integer, User> userMap = new HashMap<>();
+		userMap.put(null, null);
+		List<Reimbursement> list = new ArrayList<>();
+		
+		while(results.next()) {
+			int id = results.getInt("REIMB_ID");
+			BigDecimal amount = results.getBigDecimal("REIMB_AMOUNT");
+			
+			Timestamp submit = results.getTimestamp("REIMB_SUBMITTED");
+			LocalDateTime submitDate = results.wasNull() ? null : submit.toLocalDateTime();
+			
+			Timestamp resolve = results.getTimestamp("REIMB_RESOLVED");
+			LocalDateTime resolutionDate = results.wasNull() ? null : resolve.toLocalDateTime();
+			
+			String description = results.getString("REIMB_DESCRIPTION");
+			if(results.wasNull()) description = null;
+			//Blob receiptImage = results.getBlob("REIMB_RECEIPT");
+			
+			Integer authorID = results.getInt("REIMB_AUTHOR");
+			Integer resolverID = results.getInt("REIMB_RESOLVER");
+			if(results.wasNull()) resolverID = null;
+			
+			User author = userMap.containsKey(authorID) ? userMap.get(authorID) : dao.getUserByID(authorID, conn);
+			User resolver = userMap.containsKey(resolverID) ? userMap.get(resolverID) : dao.getUserByID(resolverID, conn);
+
+			
+			ReimbursementStatus status = ReimbursementStatus.getByValue(results.getInt("REIMB_STATUS_ID"));
+			ReimbursementType type = ReimbursementType.getByValue(results.getInt("REIMB_TYPE_ID"));
+			Reimbursement reimbursement = new Reimbursement(amount, id, submitDate, resolutionDate, description, author, resolver, status, type);
+			list.add(reimbursement);
+		}
+		
+		return list;
 	}
 
 	/**
@@ -189,7 +235,7 @@ public class ReimbursementDAOJdbc extends AbstractReimbursementDAO {
 			ResultSet results = preparedStatement.executeQuery();
 			
 			if(results.next()) {
-				return extractReimbursement(results);
+				return extractReimbursement(results, conn);
 			}
 			
 		} catch(SQLException e) {
@@ -208,17 +254,18 @@ public class ReimbursementDAOJdbc extends AbstractReimbursementDAO {
 		
 		Blob receiptImage = null;
 		
-		Connection conn = ConnectionUtil.getConnection();
-		PreparedStatement preparedStatement = conn.prepareStatement(query);
-		preparedStatement.setInt(1, reimbursement.getId());
-		ResultSet results = preparedStatement.executeQuery();
-		
-		
-		if(results.next()) {
-			receiptImage = results.getBlob("REIMB_RECEIPT");
+		try(Connection conn = ConnectionUtil.getConnection()) {
+			PreparedStatement preparedStatement = conn.prepareStatement(query);
+			preparedStatement.setInt(1, reimbursement.getId());
+			ResultSet results = preparedStatement.executeQuery();
+			
+			
+			if(results.next()) {
+				receiptImage = results.getBlob("REIMB_RECEIPT");
+			}
+			
+			return receiptImage;
 		}
-		
-		return receiptImage;
 	}
 
 	/**
@@ -230,16 +277,18 @@ public class ReimbursementDAOJdbc extends AbstractReimbursementDAO {
 		List<Reimbursement> reimbursements = new ArrayList<>();
 		String query = "SELECT reimb_id, reimb_amount, reimb_Submitted, reimb_resolved, reimb_description, "
 				+ "reimb_author, reimb_resolver, reimb_status_id, reimb_type_id FROM reimbursements "
-				+ "WHERE reimb_status_id = ?";
+				+ "WHERE reimb_status_id = ? ORDER BY reimb_submitted DESC";
 		
 		try(Connection conn = ConnectionUtil.getConnection()) {
 			PreparedStatement preparedStatement = conn.prepareStatement(query);
 			preparedStatement.setInt(1, ReimbursementStatus.PENDING.getValue());
 			ResultSet resultSet = preparedStatement.executeQuery();
 			
-			while(resultSet.next()) {
-				reimbursements.add(extractReimbursement(resultSet));
-			}
+			reimbursements = extractReimbursements(resultSet, conn);	
+			
+//			while(resultSet.next()) {
+//				reimbursements.add(extractReimbursement(resultSet, conn));
+//			}
 			
 			return reimbursements;
 			
@@ -258,7 +307,7 @@ public class ReimbursementDAOJdbc extends AbstractReimbursementDAO {
 		List<Reimbursement> reimbursements = new ArrayList<>();
 		String query = "SELECT reimb_id, reimb_amount, reimb_Submitted, reimb_resolved, reimb_description, "
 				+ "reimb_author, reimb_resolver, reimb_status_id, reimb_type_id FROM reimbursements "
-				+ "WHERE reimb_status_id = ? AND reimb_author != ?";
+				+ "WHERE reimb_status_id = ? AND reimb_author != ? ORDER BY reimb_submitted DESC";
 		
 		try(Connection conn = ConnectionUtil.getConnection()) {
 			PreparedStatement preparedStatement = conn.prepareStatement(query);
@@ -267,7 +316,7 @@ public class ReimbursementDAOJdbc extends AbstractReimbursementDAO {
 			ResultSet resultSet = preparedStatement.executeQuery();
 			
 			while(resultSet.next()) {
-				reimbursements.add(extractReimbursement(resultSet));
+				reimbursements.add(extractReimbursement(resultSet, conn));
 			}
 			
 			return reimbursements;
@@ -283,7 +332,7 @@ public class ReimbursementDAOJdbc extends AbstractReimbursementDAO {
 		List<Reimbursement> reimbursements = new ArrayList<>();
 		String query = "SELECT reimb_id, reimb_amount, reimb_Submitted, reimb_resolved, reimb_description, "
 				+ "reimb_author, reimb_resolver, reimb_status_id, reimb_type_id FROM reimbursements "
-				+ "reimb_resolver = ?";
+				+ "reimb_resolver = ? ORDER BY reimb_submitted DESC";
 		
 		try(Connection conn = ConnectionUtil.getConnection()) {
 			PreparedStatement preparedStatement = conn.prepareStatement(query);
@@ -291,7 +340,7 @@ public class ReimbursementDAOJdbc extends AbstractReimbursementDAO {
 			ResultSet resultSet = preparedStatement.executeQuery();
 			
 			while(resultSet.next()) {
-				reimbursements.add(extractReimbursement(resultSet));
+				reimbursements.add(extractReimbursement(resultSet, conn));
 			}
 			
 			return reimbursements;
@@ -303,22 +352,60 @@ public class ReimbursementDAOJdbc extends AbstractReimbursementDAO {
 	}
 
 	@Override
-	public byte[] getReceipt(Reimbursement reimbursement) {
+	public BufferedInputStream getReceipt(Reimbursement reimbursement) {
 		String query = "SELECT reimb_receipt FROM reimbursements WHERE reimb_id = ?";
 		
 		try(Connection conn = ConnectionUtil.getConnection()) {
 			PreparedStatement preparedStatement = conn.prepareStatement(query);
 			preparedStatement.setInt(1, reimbursement.getId());
 			ResultSet resultSet = preparedStatement.executeQuery();
+			
+			/*
 			byte[] bytes = {};
 			if(resultSet.next()) {
 				Blob imgBlob = resultSet.getBlob("REIMB_RECEIPT");
 				bytes = imgBlob.getBytes(1, (int)imgBlob.length());
+			} 
+			return bytes;*/
+			
+			if(resultSet.next()) {
+				return new BufferedInputStream(resultSet.getBinaryStream("REIMB_RECEIPT"));
 			}
-			return bytes;
+			
+			return null;
+			
 		} catch(SQLException e) {
 			e.printStackTrace();
-			return new byte[]{};
+			return null;
 		}
 	}
+
+	@Override
+	public void sendReceipt(Integer id, BufferedOutputStream bos) {
+		String query = "SELECT reimb_receipt FROM reimbursements WHERE reimb_id = ?";
+		
+		try(Connection conn = ConnectionUtil.getConnection()) {
+			PreparedStatement preparedStatement = conn.prepareStatement(query);
+			preparedStatement.setInt(1, id);
+			ResultSet resultSet = preparedStatement.executeQuery();
+			
+			if(resultSet.next()) {
+				BufferedInputStream bis = new BufferedInputStream(resultSet.getBinaryStream("REIMB_RECEIPT"));
+				byte[] buffer = new byte[1024];
+				for (int length = 0; (length = bis.read(buffer)) > 0;) {
+			        bos.write(buffer, 0, length);
+			    }
+				bos.flush();
+				bos.close();
+			}
+			
+			return;
+			
+		} catch(IOException | SQLException e) {
+			e.printStackTrace();
+			return;
+		}
+	}
+	
+	
 }

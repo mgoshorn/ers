@@ -1,5 +1,7 @@
 package com.revature.dao;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.util.List;
 
 import com.revature.beans.Reimbursement;
@@ -18,5 +20,7 @@ public interface ReimbursementDAO {
 
 	List<Reimbursement> getPendingRequestsByResolverID(int userID);
 
-	public byte[] getReceipt(Reimbursement reimbursement);
+	public BufferedInputStream getReceipt(Reimbursement reimbursement);
+
+	public void sendReceipt(Integer id, BufferedOutputStream bos);
 }

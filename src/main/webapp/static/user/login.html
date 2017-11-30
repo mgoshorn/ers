@@ -13,7 +13,8 @@
     <div id="modal-backdrop" class="hidden invis"></div>
 
     <div id="userbar" class="hidden invis">
-        <button>New Request</button>
+        <div id="home-button" onclick="directory.toDirectory();">⌂</div>
+        <button id="to-create-button" onclick="directory.toCreate()">New Request</button>
         <h1>
             Expense Reimbursement Portal
         </h1>
@@ -130,6 +131,8 @@
     <div id="expense-view" class="view hidden invis">
         
         <div id='new-request' class='window-view collapsed'>
+            <div id="close-new-request" onclick="hideCreate();">✗</div>
+            
             <form>
                 <div class="form-row">
                     <div class="col-md-6">
@@ -169,6 +172,7 @@
             <thead id="reimbursement-table-head">
                 <tr>
                     <td class="amount">AMOUNT</td>
+                    <td class="reimb-type">TYPE</td>
                     <td class="date">REQUESTED</td>
                     <td class="date">RESOLVED</td>
                     <td class="status">STATUS</td>
@@ -196,7 +200,7 @@
     <script src="/ers/static/js/directory.js"></script>
     <script src="/ers/static/js/expense-view.js"></script>
     <script src="/ers/static/js/audit.js"></script>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 </body>

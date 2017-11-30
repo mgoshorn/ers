@@ -3,6 +3,25 @@ directory = {
     create:  document.getElementById('create-request'),
     audit:   document.getElementById('audit-request'),
     
+    toDirectory: () => {
+        let curView = $(".view:not(.hidden)")[0];
+        if(curView == view.directoryView) {
+          return;  
+        } else {
+            view.swapView(curView, view.directoryView);
+        }
+    },
+
+    toCreate: () => {
+        let curView = $(".view:not(.hidden)")[0];
+        if(curView == view.expenseView) {
+            showCreate();
+        } else {
+            showCreate();
+            view.swapView(curView, view.expenseView);
+        }
+    },
+
     toRequestHistory: () => {
         console.log("Going to history");
         hideCreate();

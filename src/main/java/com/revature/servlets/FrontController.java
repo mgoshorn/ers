@@ -3,6 +3,7 @@ package com.revature.servlets;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -14,6 +15,7 @@ import com.revature.controllers.UserController;
 import com.revature.exceptions.ErsHTTPException;
 import com.revature.exceptions.ResourceNotFoundException;
 
+@MultipartConfig
 public class FrontController extends DefaultServlet {
 
 	private static final long serialVersionUID = 6584705380694818057L;

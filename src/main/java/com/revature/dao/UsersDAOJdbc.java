@@ -71,7 +71,8 @@ public class UsersDAOJdbc implements UsersDAO {
 		return getUserByID(id, conn);
 	}
 	
-	private User getUserByID(Integer id, Connection conn) throws SQLException {
+	@Override
+	public User getUserByID(int id, Connection conn) throws SQLException {
 		String query = "SELECT user_id, username, firstname, lastname, user_email, user_role_id FROM users "
 				+ "WHERE user_id = ?";
 		

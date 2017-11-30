@@ -1,6 +1,8 @@
 package com.revature.controllers;
 
+import java.io.BufferedOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.util.List;
@@ -14,12 +16,15 @@ import org.apache.log4j.Logger;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.revature.beans.Reimbursement;
+import com.revature.beans.User;
 import com.revature.controllers.routers.ReimbursementRoute;
+import com.revature.exceptions.AuthenticationException;
 import com.revature.exceptions.ForbiddenException;
 import com.revature.exceptions.ResourceNotFoundException;
 import com.revature.input.objects.Credentials;
 import com.revature.input.objects.ReimbursementRequest;
 import com.revature.services.ReimbursementService;
+import com.revature.services.UserService;
 
 public class ReimbursementController {
 
@@ -51,6 +56,7 @@ public class ReimbursementController {
 				case RESOURCE_NOT_FOUND:
 				//Following have no GET operation
 				case DENY:
+				case IMAGE:
 				case APPROVE:
 				case CREATE:
 					throw new ResourceNotFoundException();
@@ -119,6 +125,10 @@ public class ReimbursementController {
 				handleCreateRequest(request, response, credentials);
 				break;
 				
+			case IMAGE:
+				handleUploadImage(request, response, credentials);
+				break;
+				
 			case HISTORY:
 				handleHistoryRequest(request, response, credentials);			
 				break;
@@ -143,6 +153,27 @@ public class ReimbursementController {
 			log.error(e.toString());
 			
 		}		
+	}
+
+	private void handleUploadImage(HttpServletRequest request, HttpServletResponse response, Credentials credentials) {
+		User user = new UserService().getUserByCredentials(credentials);
+		if(user == null) {
+			throw new AuthenticationException();
+		}
+		
+		try {
+			InputStream is=request.getInputStream();
+			OutputStream os=response.getOutputStream();
+			byte[] buf = new byte[1000];
+			response.setContentType("img/jpg");
+			response.setHeader("Content-Disposition", "filename=receipt_" + 53 + ".jpg");
+			for (int nChunk = is.read(buf); nChunk!=-1; nChunk = is.read(buf))
+			{
+			    os.write(buf, 0, nChunk);
+			} 
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -170,16 +201,24 @@ public class ReimbursementController {
 			throw new ResourceNotFoundException();
 		}
 		
-		byte[] bytes = service.getReceipt(credentials, id);
-		response.setContentType("jpeg");
-		response.setHeader("Content-Disposition", "filename=receipt_" + id + ".jpeg");
-		response.setContentLength(bytes.length);
+//		BufferedInputStream bis = service.getReceipt(credentials, id);
+		response.setContentType("img/jpg");
+		response.setHeader("Content-Disposition", "filename=receipt_" + id + ".jpg");
 
-		try(OutputStream os = response.getOutputStream()) {
-		   os.write(bytes , 0, bytes.length);
-		} catch (IOException e) {
-		   e.printStackTrace();
+		try(BufferedOutputStream bos = new BufferedOutputStream(response.getOutputStream())) {
+			
+			service.sendReceipt(credentials, id, bos);
+			
+		} catch(IOException e) {
+			e.printStackTrace();
 		}
+//		response.setContentLength(bytes.length);
+//
+//		try(OutputStream os = response.getOutputStream()) {
+//		   os.write(bytes , 0, bytes.length);
+//		} catch (IOException e) {
+//		   e.printStackTrace();
+//		}
 	}
 
 	private void handleResolveStatus(HttpServletRequest request, HttpServletResponse response, String url,  Credentials credentials,

@@ -40,12 +40,31 @@ body {
     flex-wrap: nowrap;
     justify-content: space-between;
 
+    #home-button {
+        margin-left: 1%;
+        border: 1px solid black;
+        font-size: 170%;
+        line-height: 100%;
+        padding: 0 2px;
+        vertical-align: middle;
+        padding: 0 6px 2px;
+        background: RGBA(0, 0, 0, 0.1);
+        cursor: pointer;
+        transition: all 250ms ease-in-out;
+        box-shadow: 2px 2px 3px 0 darkgrey;
+        border-radius: 15%;
+        
+        &:hover { 
+            box-shadow: 0px 0px 3px 0 darkgrey;
+        }
+    }
+
     button {
         font-size: 0.75rem;
         flex-grow: 0;
         max-height: 30px;
         vertical-align: middle;
-        margin: 0 4%;
+        margin: 0 2%;
     }
 
     h1 {
@@ -282,13 +301,19 @@ body {
     }
 
     .status {
+        text-align: center;
         flex-grow: 0;
-        width: 15%;
+        width: 8%;
         border-right: 1px solid #BBB;
     }
 
     .description {
-        flex-grow: 5;
+        flex-grow: 0;
+    }
+
+    .reimb-type {
+        text-align: center;
+        min-width: 8%
     }
 
 }
@@ -437,6 +462,26 @@ body {
       border: 1px solid lightgrey;
       transition: all 500ms linear;    
       overflow: hidden;
+      max-height: 100vh;
+      position: relative;
+
+      #close-new-request {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        color: #CCC;
+        line-height: 100%;
+        padding: 2px;
+        cursor: pointer;
+        transition: color 500ms ease-in-out;
+        z-index: 3;
+
+        &:hover {
+          color: black;
+            
+        }
+      }
+
 
     #description-container {
         display: flex;
@@ -452,7 +497,7 @@ body {
     }
 
   #new-request.collapsed {
-    height: 0;
+    max-height: 0;
     padding: 0;
   }
 
@@ -479,18 +524,20 @@ body {
     * {
         padding: 5px;
     }
-    .amount {
+    .amount:not(thead) {
         text-align: right;
-        width: 15%;
+        width: 9%;
     }
     .requester {
         width: 20%;
+        padding-left: 10px;
     }
     .date {
-        width: 18%;
+        width: 20%;
+        text-align: center;
     }
     .type {
-        width: 15%;
+        width: 10%;
         text-align: center;
     }
     tr:nth-child(4n+4), tr:nth-child(4n+3) {
@@ -508,7 +555,9 @@ body {
 
     tr {
         border-bottom: 1px solid #DDD;
-        transition: opacity 500ms linear, margin 500ms ease-out;
+        overflow:hidden;
+        transition: all 500ms ease-in-out;
+        max-height: 30vh;
     }
     tr:nth-child(2n+1) {
         border-top: 1px solid #DDD;
@@ -520,19 +569,35 @@ body {
         max-height: 100%;
     }
     .audit-action {
-        width: 25%;
+        flex-grow: 1;
     }
     button {
-        width: 40%;
-        margin: 2%;
+        width: 46%;
+        margin: 0 2%;
         font-size: 80%;
+    }
+    .receipt-link, .receipt {
+        width: 10%;
+        text-align: center;
+    }
+    .date {
+        flex-grow: 0;
+        width: 20%;
+        //border-right: 1px solid #BBB;
     }
     tr.resolved {
         opacity: 0.25;
     }
+    tr.out {
+        max-height: 0;
+        padding: 0;
+        border: 0;
+        margin: 0;
+    }
 
     thead {
         text-align: center;
+        font-weight: bold;
     }
 }
 
@@ -560,17 +625,7 @@ body {
     display: flex;
     flex-direction: row;
 
-    
-    .amount {
-        flex-grow: 0;
-        min-width: 10%;
-    }
 
-    .date {
-        flex-grow: 0;
-        width: 15%;
-        //border-right: 1px solid #BBB;
-    }
 
     .description {
         flex-grow: 5;

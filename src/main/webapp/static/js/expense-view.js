@@ -36,10 +36,14 @@ let getNewExpenseBody = function() {
 }
 
 let getImageBinary = function() {
+    console.log("Getting image binary");
     return new Promise(function(resolve, reject) {
         let receiptE = document.getElementById('receipt-img'); 
         let file = receiptE.files[0];
         let reader = new FileReader();
+
+        console.log("Getting receipt image element...");
+
         reader.onload = () => {
             resolve(reader.result);
         }
@@ -48,14 +52,42 @@ let getImageBinary = function() {
         }
     
         //reader.readAsArrayBuffer(file);
-        return file;
+        resolve(file);
     });
+}
+
+let sendImage = function(id) {
+    console.log("Sending image...");
+    let receiptE = document.getElementById('receipt-img'); 
+    let file = receiptE.files[0];
+    console.log(file);
+    let req = new XMLHttpRequest();
+    req.open('POST', '../reimbursement/image/' + id);
+
+    let blob = new Blob(file);
+
+    req.send(blob);
+}
+
+let getImageBinaryBytes = function() {
+    console.log("Getting image bytes");
+    return new Promise(function(resolve, reject) {
+        let receiptE = document.getElementById('receipt-img');
+        let file = receiptE.files[0];
+        let reader = new FileReader();
+        reader.readAsArrayBuffer(file);
+        reader.onload = function() {
+            let buffer = reader.result;
+            let bytes = new Uint8Array(buffer);
+            resolve(bytes);
+        }
+    })
 }
 
 let clearNewExpenseData = function() {
     let amountE = document.getElementById('amount');
     let typeE = document.getElementById('type');
-    let descE = document.getElementById('description');
+    let descE = document.getElementById('create-description');
 
     amountE.value = 0;
     typeE.value = '';
@@ -66,7 +98,9 @@ let submitReimbursement = function() {
     view.showLoading();
     let jsonObject = getNewExpenseBody();
     console.log('Beginning..');
+    //getImageBinary().then(function(data) {
     getImageBinary().then(function(data) {
+        console.log("Image binary formed");
         //XXX Pipeline functions, but images are not recovered correctly
         //fix data handling to work uniformly between JavaScript and Java
         let strBlob = String.fromCharCode.apply(null, new Uint8Array(data));
@@ -82,7 +116,12 @@ let submitReimbursement = function() {
         return post('../reimbursement');
     }).then(function(data) {
         console.log('Fetching updated data..');
+        reimbursementsSetup(data);
         view.reimbursements.update();
+        let submitE = document.getElementById('expense-create-submit')
+        submitE.removeAttribute('disabled');
+        clearNewExpenseData();
+        hideCreate();
         view.hideLoading();
     }).catch(function(error) {
         //error

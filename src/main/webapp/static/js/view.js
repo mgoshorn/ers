@@ -85,31 +85,43 @@ view = {
                 let reimb = user.reimbursements[i];
                 
                 let rowE = newBody.insertRow(-1);
-                
                 let amountE = rowE.insertCell(-1);
+                let typeE = rowE.insertCell(-1);
                 let submitE = rowE.insertCell(-1);
                 let resolveE = rowE.insertCell(-1);
                 let statusE = rowE.insertCell(-1);
                 let descE = rowE.insertCell(-1);
-                //let typeE = rowE.insertCell(-1);
+                
 
                 amountE.classList.add('amount');
                 submitE.classList.add('date');
                 resolveE.classList.add('date');
                 statusE.classList.add('status');
                 descE.classList.add('description');
-                //typeE.classList.add('reimb-type');
+                typeE.classList.add('reimb-type');
 
                 amountE.innerText = '$' + reimb.amount.toFixed(2);
                 
-                submitE.innerText = reimb.author.firstName + " " + reimb.author.lastName;
+                let min = reimb.submitted.minute >= 10 ? reimb.submitted.minute : '0' + reimb.submitted.minute;
+                let hour = reimb.submitted.hour >= 10 ? reimb.submitted.hour : '0' + reim.submitted.hour;
+                let second = reimb.submitted.second >= 10 ? reimb.submitted.second : '0' + reimb.submitted.second;
 
-                if(reimb.resolver === null) {
+
+                submitE.innerText = reimb.submitted.year + '-' + reimb.submitted.monthValue + '-' + reimb.submitted.dayOfMonth + ' ';
+                submitE.innerText += min + ':' + hour + ':' + second;
+
+                if(reimb.resolved === null) {
                     resolveE.innerText = "--";
                 } else {
-                    resolveE.innerText = reimb.resolver.firstName + " " + reimb.author.lastName;
+
+                    min = reimb.resolved.minute >= 10 ? reimb.resolved.minute : '0' + reimb.resolved.minute;
+                    hour = reimb.resolved.hour >= 10 ? reimb.resolved.hour : '0' + reim.resolved.hour;
+                    second = reimb.resolved.second >= 10 ? reimb.resolved.second : '0' + reimb.resolved.second;
+
+                    resolveE.innerText = reimb.resolved.year + '-' + reimb.resolved.monthValue + '-' + reimb.resolved.dayOfMonth + ' ';
+                    resolveE.innerText += hour + ':' + min + ':' + second;
                 }
-                //typeE.innerText = reimb.type;
+                typeE.innerText = reimb.type;
                 statusE.innerText = reimb.status;
                 descE.innerText = reimb.description;
  

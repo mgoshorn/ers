@@ -7,6 +7,7 @@ public enum ReimbursementRoute {
 	DENY,
 	APPROVE,
 	RECEIPT,
+	IMAGE,
 	RESOURCE_NOT_FOUND;
 	
 	public static ReimbursementRoute getDelegate(String str) {
@@ -16,6 +17,7 @@ public enum ReimbursementRoute {
 		if(str.startsWith("/deny")) return DENY;
 		if(str.startsWith("/approve")) return APPROVE;
 		if(str.startsWith("/receipt")) return RECEIPT;
+		if(str.startsWith("/image")) return IMAGE;
 		if(str.equals("") || str.equals("/")) return HISTORY;
 		return RESOURCE_NOT_FOUND;
 	}

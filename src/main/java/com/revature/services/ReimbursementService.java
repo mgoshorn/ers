@@ -4,6 +4,7 @@ import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.apache.log4j.Logger;
 
@@ -42,7 +43,10 @@ public class ReimbursementService {
 			throw new ForbiddenException();
 		}
 		
-		return dao.getPendingRequests();
+		return dao.getPendingRequests()
+				.stream()
+				.filter(r -> !r.getAuthor().equals(user))
+				.collect(Collectors.toList());
 	}
 
 	

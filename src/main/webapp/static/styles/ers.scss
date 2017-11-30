@@ -590,7 +590,7 @@ body {
     }
     tr.out {
         max-height: 0;
-        padding: 0;
+        padding: 0 !important;
         border: 0;
         margin: 0;
     }
@@ -601,6 +601,42 @@ body {
     }
 }
 
+#expense-table-body:after {
+    content: "You have not created any requests yet.";
+    overflow: hidden;
+    max-height: 0;
+    transition: all 300ms ease-in-out;
+    display: block;
+    text-align: center;
+    width: 80vw;
+}
+#expense-table-body:empty:after {
+    
+    padding: 10px;
+    font-size: 150%;
+    border: 1px solid lightgrey;
+    
+    max-height: 10vh;
+}
+
+#audit-table-body:after {
+    content: "There's nothing here! Good work!";
+    overflow: hidden;
+    max-height: 0;
+    font-size: 10%;
+    transition: all 300ms ease-in-out;
+    display: block;
+    text-align: center;
+    width: 80vw;
+}
+#audit-table-body:empty:after {
+    
+    padding: 10px;
+    font-size: 150%;
+    border: 1px solid lightgrey;
+    
+    max-height: 10vh;
+}
 
 #audit-table thead {
     border-bottom: solid 1px black;

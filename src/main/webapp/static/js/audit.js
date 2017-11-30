@@ -16,9 +16,9 @@ audit = {
     update: () => {
         return new Promise(function(resolve, reject) {
             
-            oldBody = document.getElementById('expense-table-body');
+            oldBody = document.getElementById('audit-table-body');
             newBody = document.createElement('tbody');
-            newBody.id = 'expense-table-body';
+            newBody.id = 'audit-table-body';
     
             console.log('Building...');
             console.log(audit.pending);
@@ -103,36 +103,39 @@ audit = {
         
     },
     approve: function(caller, id) {
+        console.log('approving...');
         detailsRowE = caller.parentNode.parentNode;
         descRowE = caller.parentNode.parentNode.nextSibling;
 
         detailsRowE.classList.add('resolved');
         descRowE.classList.add('resolved');
         
-        // detailsRowE.addEventListener("transitionend", (e) => {
-        //     setTimeout(() => {
-        //         console.log("Removing rows");
-        //         table = detailsRowE.parentNode;
-        //         table.removeChild(detailsRowE);
-        //         table.removeChild(descRowE);
-        //     }, 100);         
-        // }, {});
-
         post('../reimbursement/approve/' + id).then(() => {
             console.log("Hiding rows");
             detailsRowE.classList.add('out');
             descRowE.classList.add('out');
+            setTimeout(() => {
+                detailsRowE.parentNode.removeChild(detailsRowE);
+                descRowE.parentNode.removeChild(descRowE);
+            }, 500)
         });
     },
 
     deny: function(caller, id) {
-        caller.parentNode.parentNode.classList.add('resolved');
-        caller.parentNode.parentNode.nextSibling.classList.add('resolved');
-        
+        detailsRowE = caller.parentNode.parentNode;
+        descRowE = caller.parentNode.parentNode.nextSibling;
+
+        detailsRowE.classList.add('resolved');
+        descRowE.classList.add('resolved');
+
         post('../reimbursement/deny/' + id).then(function() {
             console.log("Hiding rows");
             detailsRowE.classList.add('out');
             descRowE.classList.add('out');
+            setTimeout(() => {
+                detailsRowE.parentNode.removeChild(detailsRowE);
+                descRowE.parentNode.removeChild(descRowE);
+            }, 500)
         });
     }
 

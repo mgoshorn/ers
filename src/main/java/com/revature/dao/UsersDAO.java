@@ -34,7 +34,7 @@ public interface UsersDAO {
 	 */
 	public User getUserByID(int id) throws SQLException;
 	
-	public User getUserByID(int id, Connection conn) throws SQLException;
+	public User getUserByID(Integer id, Connection conn) throws SQLException;
 	
 	/**
 	 * Retrieves and returns a stored hash from database for the 

@@ -72,7 +72,7 @@ public class UsersDAOJdbc implements UsersDAO {
 	}
 	
 	@Override
-	public User getUserByID(int id, Connection conn) throws SQLException {
+	public User getUserByID(Integer id, Connection conn) throws SQLException {
 		String query = "SELECT user_id, username, firstname, lastname, user_email, user_role_id FROM users "
 				+ "WHERE user_id = ?";
 		

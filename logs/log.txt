@@ -267,3 +267,18 @@
 2017-11-28 19:42:42 TRACE ReimbursementTypeUnitTests:59 - valueMap size -> 4, ReimbursementType values length -> 4
 2017-11-28 19:42:42 TRACE UserRoleUnitTests:60 - valueMap size -> 2, Role values length -> 3
 2017-11-28 19:42:42 INFO  UserServiceTests:33 - B792QI8LK39Z8AI0AND11JQ230WQSXYRGEL6EMD2
+2017-11-30 13:29:18 TRACE ReimbursementStatusUnitTests:59 - valueMap size -> 3, ReimbursementStatus values length -> 3
+2017-11-30 13:29:19 TRACE UsersDAOJdbc:51 - Searching for user with username: TestingUserUsername
+2017-11-30 13:29:19 TRACE UsersDAOJdbc:62 - User found with id: 162
+2017-11-30 13:29:19 TRACE UsersDAOJdbc:155 - Saving user
+2017-11-30 13:29:19 TRACE ReimbursementTypeUnitTests:59 - valueMap size -> 4, ReimbursementType values length -> 4
+2017-11-30 13:29:20 TRACE UserRoleUnitTests:60 - valueMap size -> 2, Role values length -> 3
+2017-11-30 13:29:20 INFO  UserServiceTests:33 - B5R93JB1MGMEM0AJLH6PO8N0D9OHMV58P1TM53EN
+2017-11-30 13:33:06 TRACE ReimbursementStatusUnitTests:59 - valueMap size -> 3, ReimbursementStatus values length -> 3
+2017-11-30 13:33:06 TRACE UsersDAOJdbc:51 - Searching for user with username: TestingUserUsername
+2017-11-30 13:33:06 TRACE UsersDAOJdbc:62 - User found with id: 163
+2017-11-30 13:33:06 TRACE UsersDAOJdbc:155 - Saving user
+2017-11-30 13:33:06 TRACE UsersDaoJdbcTest:133 - Old user object username: ChangedUsername, new user object username: ChangedUsername
+2017-11-30 13:33:07 TRACE ReimbursementTypeUnitTests:59 - valueMap size -> 4, ReimbursementType values length -> 4
+2017-11-30 13:33:07 TRACE UserRoleUnitTests:60 - valueMap size -> 2, Role values length -> 3
+2017-11-30 13:33:07 INFO  UserServiceTests:33 - WGG67BVU44WZ1MB5EZHL6ZTXZLNED05VMYN7Q0LZ
